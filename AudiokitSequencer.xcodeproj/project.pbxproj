@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9AD589A890606865CBEBEAAB /* Pods_AudiokitSequencer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5861E67F48C0582450AD7276 /* Pods_AudiokitSequencer.framework */; };
+		BD5FC3C74054CE1C15E61CF0 /* Pods_AudiokitSequencerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */; };
+		E8669C8A24EA8CD10021645F /* Drums in Resources */ = {isa = PBXBuildFile; fileRef = E8669C8924EA8CD10021645F /* Drums */; };
+		E8669C8C24EA8CEE0021645F /* Sampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C8B24EA8CEE0021645F /* Sampler.swift */; };
+		E8669C8E24EBDC6D0021645F /* DrumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C8D24EBDC6D0021645F /* DrumPad.swift */; };
+		E8669C9024EBE37E0021645F /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C8F24EBE37E0021645F /* Sequencer.swift */; };
+		E8669C9224ED24000021645F /* DrumSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9124ED24000021645F /* DrumSet.swift */; };
 		E8678D3C24C9DC9E006F8244 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D3B24C9DC9E006F8244 /* AppDelegate.swift */; };
 		E8678D3E24C9DC9E006F8244 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */; };
 		E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D3F24C9DC9E006F8244 /* ViewController.swift */; };
@@ -27,6 +34,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07D0B390C746B012D21BA856 /* Pods-AudiokitSequencerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudiokitSequencerTests.release.xcconfig"; path = "Target Support Files/Pods-AudiokitSequencerTests/Pods-AudiokitSequencerTests.release.xcconfig"; sourceTree = "<group>"; };
+		0F68F75FD80F257050713C93 /* Pods-AudiokitSequencer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudiokitSequencer.debug.xcconfig"; path = "Target Support Files/Pods-AudiokitSequencer/Pods-AudiokitSequencer.debug.xcconfig"; sourceTree = "<group>"; };
+		13954783F1C09B9BFBC97A85 /* Pods-AudiokitSequencerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudiokitSequencerTests.debug.xcconfig"; path = "Target Support Files/Pods-AudiokitSequencerTests/Pods-AudiokitSequencerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5861E67F48C0582450AD7276 /* Pods_AudiokitSequencer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudiokitSequencer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CA7515D0B91C10E14D1E3DF /* Pods-AudiokitSequencer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudiokitSequencer.release.xcconfig"; path = "Target Support Files/Pods-AudiokitSequencer/Pods-AudiokitSequencer.release.xcconfig"; sourceTree = "<group>"; };
+		A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudiokitSequencerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8669C8924EA8CD10021645F /* Drums */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Drums; path = Samples/Drums; sourceTree = "<group>"; };
+		E8669C8B24EA8CEE0021645F /* Sampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sampler.swift; sourceTree = "<group>"; };
+		E8669C8D24EBDC6D0021645F /* DrumPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPad.swift; sourceTree = "<group>"; };
+		E8669C8F24EBE37E0021645F /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
+		E8669C9124ED24000021645F /* DrumSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumSet.swift; sourceTree = "<group>"; };
 		E8678D3824C9DC9E006F8244 /* AudiokitSequencer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudiokitSequencer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8678D3B24C9DC9E006F8244 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AD589A890606865CBEBEAAB /* Pods_AudiokitSequencer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,18 +71,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD5FC3C74054CE1C15E61CF0 /* Pods_AudiokitSequencerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5BDF3DE2D157CD549622B018 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0F68F75FD80F257050713C93 /* Pods-AudiokitSequencer.debug.xcconfig */,
+				7CA7515D0B91C10E14D1E3DF /* Pods-AudiokitSequencer.release.xcconfig */,
+				13954783F1C09B9BFBC97A85 /* Pods-AudiokitSequencerTests.debug.xcconfig */,
+				07D0B390C746B012D21BA856 /* Pods-AudiokitSequencerTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		84A5A6AEC4FC7C1CA28F629D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5861E67F48C0582450AD7276 /* Pods_AudiokitSequencer.framework */,
+				A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E8678D2F24C9DC9E006F8244 = {
 			isa = PBXGroup;
 			children = (
 				E8678D3A24C9DC9E006F8244 /* AudiokitSequencer */,
 				E8678D5124C9DC9F006F8244 /* AudiokitSequencerTests */,
+				E8669C8924EA8CD10021645F /* Drums */,
 				E8678D3924C9DC9E006F8244 /* Products */,
+				5BDF3DE2D157CD549622B018 /* Pods */,
+				84A5A6AEC4FC7C1CA28F629D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +125,10 @@
 				E8678D3B24C9DC9E006F8244 /* AppDelegate.swift */,
 				E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */,
 				E8678D3F24C9DC9E006F8244 /* ViewController.swift */,
+				E8669C8B24EA8CEE0021645F /* Sampler.swift */,
+				E8669C8F24EBE37E0021645F /* Sequencer.swift */,
+				E8669C9124ED24000021645F /* DrumSet.swift */,
+				E8669C8D24EBDC6D0021645F /* DrumPad.swift */,
 				E8678D4124C9DC9E006F8244 /* Main.storyboard */,
 				E8678D4424C9DC9F006F8244 /* Assets.xcassets */,
 				E8678D4624C9DC9F006F8244 /* LaunchScreen.storyboard */,
@@ -106,6 +153,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8678D5724C9DC9F006F8244 /* Build configuration list for PBXNativeTarget "AudiokitSequencer" */;
 			buildPhases = (
+				1605B897F11E60D58282F60A /* [CP] Check Pods Manifest.lock */,
 				E8678D3424C9DC9E006F8244 /* Sources */,
 				E8678D3524C9DC9E006F8244 /* Frameworks */,
 				E8678D3624C9DC9E006F8244 /* Resources */,
@@ -123,6 +171,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E8678D5A24C9DC9F006F8244 /* Build configuration list for PBXNativeTarget "AudiokitSequencerTests" */;
 			buildPhases = (
+				2477338B293169F63253F6A3 /* [CP] Check Pods Manifest.lock */,
 				E8678D4A24C9DC9F006F8244 /* Sources */,
 				E8678D4B24C9DC9F006F8244 /* Frameworks */,
 				E8678D4C24C9DC9F006F8244 /* Resources */,
@@ -180,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8669C8A24EA8CD10021645F /* Drums in Resources */,
 				E8678D4824C9DC9F006F8244 /* LaunchScreen.storyboard in Resources */,
 				E8678D4524C9DC9F006F8244 /* Assets.xcassets in Resources */,
 				E8678D4324C9DC9E006F8244 /* Main.storyboard in Resources */,
@@ -195,14 +245,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1605B897F11E60D58282F60A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AudiokitSequencer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2477338B293169F63253F6A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AudiokitSequencerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E8678D3424C9DC9E006F8244 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8669C9224ED24000021645F /* DrumSet.swift in Sources */,
 				E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */,
+				E8669C8C24EA8CEE0021645F /* Sampler.swift in Sources */,
 				E8678D3C24C9DC9E006F8244 /* AppDelegate.swift in Sources */,
+				E8669C8E24EBDC6D0021645F /* DrumPad.swift in Sources */,
 				E8678D3E24C9DC9E006F8244 /* SceneDelegate.swift in Sources */,
+				E8669C9024EBE37E0021645F /* Sequencer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,7 +395,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -348,7 +449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -360,17 +461,20 @@
 		};
 		E8678D5824C9DC9F006F8244 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0F68F75FD80F257050713C93 /* Pods-AudiokitSequencer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = W2627T4CKR;
+				DEVELOPMENT_TEAM = 5Y334DX523;
 				INFOPLIST_FILE = AudiokitSequencer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.webabilities.AudiokitSequencer;
+				PRODUCT_BUNDLE_IDENTIFIER = de.webabilities.AudiokitSequence;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -378,6 +482,7 @@
 		};
 		E8678D5924C9DC9F006F8244 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7CA7515D0B91C10E14D1E3DF /* Pods-AudiokitSequencer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -396,6 +501,7 @@
 		};
 		E8678D5B24C9DC9F006F8244 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13954783F1C09B9BFBC97A85 /* Pods-AudiokitSequencerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -418,6 +524,7 @@
 		};
 		E8678D5C24C9DC9F006F8244 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 07D0B390C746B012D21BA856 /* Pods-AudiokitSequencerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
