@@ -58,36 +58,39 @@ class DrumSet: AKMIDIInstrument {
     }()
 
     func receivedMidiCallBack(statusByte: MIDIByte, note: MIDIByte, velocity: MIDIByte) {
-        if statusByte == 144 {
-            switch note {
-            case Drums.bdrum.rawValue: bdrum.play(velocity)
-            case Drums.sdrum.rawValue: sdrum.play(velocity)
-            case Drums.hhOpen.rawValue: hhOpen.play(velocity)
-            case Drums.hhClosed.rawValue: hhClosed.play(velocity)
-            case Drums.tomLow.rawValue: tomLow.play(velocity)
-            case Drums.tomMid.rawValue: tomMid.play(velocity)
-            case Drums.tomHi.rawValue: tomHi.play(velocity)
+        guard let status = AKMIDIStatus(byte: statusByte) else { return }
 
-            default: break
-            }
-        }
-
-        if statusByte == 128 {
-            switch note {
-            case Drums.bdrum.rawValue: bdrum.stop()
-            case Drums.sdrum.rawValue: sdrum.stop()
-            case Drums.hhOpen.rawValue: hhOpen.stop()
-            case Drums.hhClosed.rawValue: hhClosed.stop()
-            case Drums.tomLow.rawValue: tomLow.stop()
-            case Drums.tomMid.rawValue: tomMid.stop()
-            case Drums.tomHi.rawValue: tomHi.stop()
-
-            default: break
-            }
+        switch status.type {
+        case .noteOn: play(note: note, velocity: velocity)
+        case .noteOff: stop(note: note)
+        default: break
         }
     }
 
-    override func receivedMIDINoteOn(_ noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, offset: MIDITimeStamp = 0) {
-        super.receivedMIDINoteOn(noteNumber, velocity: velocity, channel: channel, offset: offset)
+    private func play(note: MIDIByte, velocity: MIDIByte) {
+        switch Drums(rawValue: note) {
+        case .bdrum: bdrum.play(velocity)
+        case .sdrum: sdrum.play(velocity)
+        case .hhOpen: hhOpen.play(velocity)
+        case .hhClosed: hhClosed.play(velocity)
+        case .tomLow: tomLow.play(velocity)
+        case .tomMid: tomMid.play(velocity)
+        case .tomHi: tomHi.play(velocity)
+        default: break
+        }
+    }
+
+    private func stop(note: MIDIByte) {
+        switch Drums(rawValue: note) {
+        case .bdrum: bdrum.stop()
+        case .sdrum: sdrum.stop()
+        case .hhOpen: hhOpen.stop()
+        case .hhClosed: hhClosed.stop()
+        case .tomLow: tomLow.stop()
+        case .tomMid: tomMid.stop()
+        case .tomHi: tomHi.stop()
+
+        default: break
+        }
     }
 }

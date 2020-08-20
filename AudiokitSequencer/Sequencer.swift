@@ -61,7 +61,7 @@ class Sequencer {
 
     func setUpSequncer() {
         sequencer.clearRange(start: AKDuration(beats: 0), duration: AKDuration(beats: 100))
-        sequencer.enableLooping(AKDuration(beats: 4))
+
         sequencer.setTempo(130)
 
         for (index, _) in Drums.allCases.enumerated() {
@@ -72,26 +72,27 @@ class Sequencer {
 
         sequencer.setGlobalMIDIOutput(callbackInstrument.midiIn)
 
-        add(drum: .bdrum, note: Drums.bdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 0)))
-        add(drum: .bdrum, note: Drums.bdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 1)))
-        add(drum: .bdrum, note: Drums.bdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 2)))
-        add(drum: .bdrum, note: Drums.bdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 3)))
+        add(note: Drums.bdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 0)))
+        add(note: Drums.bdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 1)))
+        add(note: Drums.bdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 2)))
+        add(note: Drums.bdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 3)))
 
-        add(drum: .sdrum, note: Drums.sdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 1)))
-        add(drum: .sdrum, note: Drums.sdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 3)))
+        add(note: Drums.sdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 1)))
+        add(note: Drums.sdrum.note(velocity: .max, duration: AKDuration.init(beats: 1), position: AKDuration.init(beats: 3)))
 
-        add(drum: .hhOpen, note: Drums.hhOpen.note(velocity: 92, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 0.5)))
-        add(drum: .hhOpen, note: Drums.hhOpen.note(velocity: 92, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 1.5)))
-        add(drum: .hhOpen, note: Drums.hhOpen.note(velocity: 92, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 2.5)))
-        add(drum: .hhOpen, note: Drums.hhOpen.note(velocity: 92, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 3.5)))
+        add(note: Drums.hhOpen.note(velocity: 92, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 0.5)))
+        add(note: Drums.hhOpen.note(velocity: 92, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 1.5)))
+        add(note: Drums.hhOpen.note(velocity: 92, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 2.5)))
+        add(note: Drums.hhOpen.note(velocity: 92, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 3.5)))
 
-        add(drum: .hhClosed, note: Drums.hhClosed.note(velocity: 32, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 0)))
-        add(drum: .hhClosed, note: Drums.hhClosed.note(velocity: 32, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 1)))
-        add(drum: .hhClosed, note: Drums.hhClosed.note(velocity: 32, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 2)))
-        add(drum: .hhClosed, note: Drums.hhClosed.note(velocity: 32, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 3)))
+        add(note: Drums.hhClosed.note(velocity: 32, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 0)))
+        add(note: Drums.hhClosed.note(velocity: 32, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 1)))
+        add(note: Drums.hhClosed.note(velocity: 32, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 2)))
+        add(note: Drums.hhClosed.note(velocity: 32, duration: AKDuration.init(beats: 0.5), position: AKDuration.init(beats: 3)))
     }
 
-    func add(drum: Drums, note: AKMIDINoteData) {
+    func add(note: AKMIDINoteData) {
+        guard let drum = Drums(rawValue: note.noteNumber) else { return }
         let trackIndex = drum.trackNumber()
         let track = sequencer.tracks[trackIndex]
         track.add(midiNoteData: note)

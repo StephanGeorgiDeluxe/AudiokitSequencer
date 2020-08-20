@@ -10,10 +10,6 @@ import UIKit
 import AudioKit
 
 class ViewController: UIViewController {
-
-    let oscillator = AKOscillatorFilterSynth(waveform: AKTable.init(.sine, phase: 0, count: .bitWidth))
-    let delay = AKDelay()
-
     let env = AKAmplitudeEnvelope()
     let note = MIDINoteNumber(40)
 
@@ -23,6 +19,9 @@ class ViewController: UIViewController {
     let drumSet = DrumSet()
 
     @IBOutlet weak var startButton: UIButton!
+
+    @IBOutlet weak var loopButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         AudioKit.output = drumSet.mixer
@@ -30,30 +29,35 @@ class ViewController: UIViewController {
         try? AudioKit.start()
     }
 
-    func setUpOscillator() {
-        oscillator.attackDuration = 0
-        oscillator.decayDuration = 0.10
-        oscillator.sustainLevel = 0
-        oscillator.releaseDuration = 0.50
-
-        oscillator.setOutput(to: delay)
-    }
-
     func setUpSequencer() {
         sequencer.callBack = { (statusByte, note, velocity) in
             self.drumSet.receivedMidiCallBack(statusByte: statusByte, note: note, velocity: velocity)
         }
+
+        sequencer.sequencer.enableLooping()
     }
 
     @IBAction func didTouchUpInside(_ sender: Any) {
-//        oscillator.reset()
-//        oscillator.play(noteNumber: note, velocity: 127, frequency: 90)
-//        drumPad.play()
-//         try? drums.sampler.play(noteNumber: 24, velocity: 127, channel: 0)
+        
         sequencer.sequencer.preroll()
-        sequencer.sequencer.rewind()
-        sequencer.sequencer.play()
-    }
+        if sequencer.sequencer.isPlaying {
+            sequencer.sequencer.stop()
+            startButton.setTitle("Play", for: .normal)
+        } else {
+            sequencer.sequencer.rewind()
+            sequencer.sequencer.play()
+            startButton.setTitle("Stop", for: .normal)
+        }
 
+    }
+    @IBAction func didTouchLoopButton(_ sender: Any) {
+        if sequencer.sequencer.loopEnabled {
+            loopButton.setTitle("loop off", for: .normal)
+            sequencer.sequencer.toggleLoop()
+        } else {
+            loopButton.setTitle("loop on", for: .normal)
+            sequencer.sequencer.toggleLoop()
+        }
+    }
 }
 

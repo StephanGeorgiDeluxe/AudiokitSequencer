@@ -15,25 +15,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGK-Vy-PIU">
-                                <rect key="frame" x="184" y="160" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="didTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h3Q-VF-GLm"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="n3q-8B-gni">
+                                <rect key="frame" x="181.5" y="418" width="51" height="60"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGK-Vy-PIU">
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="30"/>
+                                        <state key="normal" title="Play"/>
+                                        <connections>
+                                            <action selector="didTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h3Q-VF-GLm"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="615-jX-la1">
+                                        <rect key="frame" x="0.0" y="30" width="51" height="30"/>
+                                        <state key="normal" title="loop on"/>
+                                        <connections>
+                                            <action selector="didTouchLoopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yuw-wX-Pae"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="n3q-8B-gni" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5fP-Du-75J"/>
+                            <constraint firstItem="n3q-8B-gni" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Uxe-PV-vXM"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="loopButton" destination="615-jX-la1" id="rwh-V8-uDS"/>
                         <outlet property="startButton" destination="aGK-Vy-PIU" id="3fu-6A-lSD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="132" y="94"/>
+            <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
         </scene>
     </scenes>
 </document>
