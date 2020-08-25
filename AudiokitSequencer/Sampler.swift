@@ -24,7 +24,7 @@ class Sampler {
         setUpSampler()
     }
 
-    func setUpSampler() {6
+    func setUpSampler() {
         let files = [bdrum, sdrum, clap, hhClosed, hhOpen, tomHi, tomMid, tomLow]
         do {
             try sampler.loadAudioFiles(files)
