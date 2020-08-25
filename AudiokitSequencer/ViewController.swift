@@ -34,30 +34,30 @@ class ViewController: UIViewController {
             self.drumSet.receivedMidiCallBack(statusByte: statusByte, note: note, velocity: velocity)
         }
 
-        sequencer.sequencer.enableLooping()
+        sequencer.enableLooping()
     }
 
     @IBAction func didTouchUpInside(_ sender: Any) {
-        
-        sequencer.sequencer.preroll()
-        if sequencer.sequencer.isPlaying {
-            sequencer.sequencer.stop()
+        if sequencer.isPlaying() {
+            sequencer.stop()
             startButton.setTitle("Play", for: .normal)
         } else {
-            sequencer.sequencer.rewind()
-            sequencer.sequencer.play()
+            sequencer.play()
             startButton.setTitle("Stop", for: .normal)
         }
 
     }
     @IBAction func didTouchLoopButton(_ sender: Any) {
-        if sequencer.sequencer.loopEnabled {
+        if sequencer.loopEnabled() {
             loopButton.setTitle("loop off", for: .normal)
-            sequencer.sequencer.toggleLoop()
+            sequencer.toggleLoop()
         } else {
             loopButton.setTitle("loop on", for: .normal)
-            sequencer.sequencer.toggleLoop()
+            sequencer.toggleLoop()
         }
+    }
+    @IBAction func didTouchRemoveButton(_ sender: Any) {
+        sequencer.remove(drumNote: .bdrum, position: 0)
     }
 }
 
