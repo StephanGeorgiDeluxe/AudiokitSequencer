@@ -90,7 +90,7 @@ class Sequencer {
 
     private func setUpSequncer() {
         sequencer.clearRange(start: AKDuration(beats: 0), duration: AKDuration(beats: 100))
-        sequencer.setTempo(130)
+        sequencer.setTempo(126)
 
         for (index, _) in Drums.allCases.enumerated() {
             if let track = sequencer.newTrack("track_\(index)") {
@@ -118,6 +118,18 @@ class Sequencer {
         add(drumNote: .hhClosed, position: 2.5, velocity: .mid)
 
         add(drumNote: .hhOpen, position: 3.5, duration: .half, velocity: .mid)
+
+        add(drumNote: .tomHi, position: 0.25)
+        add(drumNote: .tomMid, position: 1.75)
+        add(drumNote: .tomLow, position: 2.25)
+        add(drumNote: .tomMid, position: 3.25)
+        add(drumNote: .tomLow, position: 3.5)
+
+        add(drumNote: .clap, position: 0.75)
+        add(drumNote: .clap, position: 1, velocity: .lowHigh)
+        add(drumNote: .clap, position: 2.25, velocity: .lower)
+
+        sequencer.preroll()
     }
 
     private func add(note: AKMIDINoteData) {
@@ -132,7 +144,7 @@ class Sequencer {
         let trackIndex = drum.trackNumber()
         let track = sequencer.tracks[trackIndex]
         let midiNotes = track.getMIDINoteData()
-        let nodes = midiNotes.filter({ !($0.position == AKDuration(beats: note.position.beats + preShiftBeats) &&  $0.noteNumber == note.noteNumber) })
+        let nodes = midiNotes.filter({ !($0.position == AKDuration(beats: note.position.beats) &&  $0.noteNumber == note.noteNumber) })
         track.replaceMIDINoteData(with: nodes)
 
     }
@@ -143,20 +155,18 @@ class Sequencer {
              velocity: NoteVelocity = .full) {
         add(note: drumNote.note(velocity: velocity.rawValue,
                                 duration: duration.duration(),
-                                position: AKDuration(beats: position)))
+                                position: AKDuration(beats: position + preShiftBeats)))
     }
 
     func remove(drumNote: Drums,
                 position: Double) {
         remove(note: drumNote.note(velocity: .max,
                                    duration: AKDuration(beats: 1),
-                                   position: AKDuration(beats: position)))
+                                   position: AKDuration(beats: position + preShiftBeats)))
     }
 
     func play() {
-        shiftAllMidiNotes(.fowards)
-        sequencer.preroll()
-        sequencer.rewind()
+        sequencer.enableLooping(AKDuration(beats: 4))
         sequencer.play()
     }
 
@@ -179,6 +189,7 @@ class Sequencer {
 
     func stop() {
         sequencer.stop()
+        sequencer.rewind()
     }
 
     func isPlaying() -> Bool {
