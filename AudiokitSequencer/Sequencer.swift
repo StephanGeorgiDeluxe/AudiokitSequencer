@@ -68,7 +68,8 @@ enum ShiftDirection {
 }
 
 class Sequencer {
-    private let preShiftBeats: Double = 1.0
+    private var preShiftBeats: Double = 1.0
+    private var grooveDelay: Double = 0.04
 
     private let sequencer = AKAppleSequencer()
     private var tracks: Array<AKMusicTrack> = []
@@ -90,7 +91,7 @@ class Sequencer {
 
     private func setUpSequncer() {
         sequencer.clearRange(start: AKDuration(beats: 0), duration: AKDuration(beats: 100))
-        sequencer.setTempo(126)
+        sequencer.setTempo(120)
 
         for (index, _) in Drums.allCases.enumerated() {
             if let track = sequencer.newTrack("track_\(index)") {
@@ -132,11 +133,33 @@ class Sequencer {
         sequencer.preroll()
     }
 
+    func add(drumNote: Drums,
+             position: Double,
+             duration: NoteLength = .whole,
+             velocity: NoteVelocity = .full) {
+
+        let position = processNotePosition(position)
+
+        add(note: drumNote.note(velocity: velocity.rawValue,
+                                duration: duration.duration(),
+                                position: AKDuration(beats: position)))
+    }
+
     private func add(note: AKMIDINoteData) {
         guard let drum = Drums(rawValue: note.noteNumber) else { return }
         let trackIndex = drum.trackNumber()
         let track = sequencer.tracks[trackIndex]
         track.add(midiNoteData: note)
+    }
+
+    func remove(drumNote: Drums,
+                position: Double) {
+
+        let position = processNotePosition(position)
+
+        remove(note: drumNote.note(velocity: .max,
+                                   duration: AKDuration(beats: 1),
+                                   position: AKDuration(beats: position)))
     }
 
     private func remove(note: AKMIDINoteData) {
@@ -149,42 +172,22 @@ class Sequencer {
 
     }
 
-    func add(drumNote: Drums,
-             position: Double,
-             duration: NoteLength = .whole,
-             velocity: NoteVelocity = .full) {
-        add(note: drumNote.note(velocity: velocity.rawValue,
-                                duration: duration.duration(),
-                                position: AKDuration(beats: position + preShiftBeats)))
-    }
+    private func processNotePosition(_ position: Double) -> Double {
 
-    func remove(drumNote: Drums,
-                position: Double) {
-        remove(note: drumNote.note(velocity: .max,
-                                   duration: AKDuration(beats: 1),
-                                   position: AKDuration(beats: position + preShiftBeats)))
+        var processedPosition = position + preShiftBeats
+        let remainder = position.truncatingRemainder(dividingBy: 1.0)
+
+        switch remainder {
+         case 0.25, 0.75: processedPosition =  processedPosition + grooveDelay
+        default: break
+        }
+
+        return processedPosition
     }
 
     func play() {
         sequencer.enableLooping(AKDuration(beats: 4))
         sequencer.play()
-    }
-
-    func shiftAllMidiNotes(_ direction: ShiftDirection) {
-        for track in sequencer.tracks {
-            let midiNotes = track.getMIDINoteData()
-            let shiftedNotes = midiNotes.map { (note) -> AKMIDINoteData in
-                var shiftedNote = note
-                switch direction {
-                case .fowards:
-                    shiftedNote.position = AKDuration(beats: note.position.beats + preShiftBeats)
-                case .backwards:
-                    shiftedNote.position = AKDuration(beats: note.position.beats - preShiftBeats)
-                }
-                return shiftedNote
-            }
-            track.replaceMIDINoteData(with: shiftedNotes)
-        }
     }
 
     func stop() {
@@ -206,5 +209,25 @@ class Sequencer {
 
     func loopEnabled() -> Bool {
         return sequencer.loopEnabled
+    }
+}
+
+extension Sequencer {
+
+    func shiftAllMidiNotes(_ direction: ShiftDirection) {
+        for track in sequencer.tracks {
+            let midiNotes = track.getMIDINoteData()
+            let shiftedNotes = midiNotes.map { (note) -> AKMIDINoteData in
+                var shiftedNote = note
+                switch direction {
+                case .fowards:
+                    shiftedNote.position = AKDuration(beats: note.position.beats + preShiftBeats)
+                case .backwards:
+                    shiftedNote.position = AKDuration(beats: note.position.beats - preShiftBeats)
+                }
+                return shiftedNote
+            }
+            track.replaceMIDINoteData(with: shiftedNotes)
+        }
     }
 }
