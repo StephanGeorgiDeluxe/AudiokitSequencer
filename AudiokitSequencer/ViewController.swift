@@ -59,5 +59,9 @@ class ViewController: UIViewController {
     @IBAction func didTouchRemoveButton(_ sender: Any) {
         sequencer.remove(drumNote: .bdrum, position: 0)
     }
+
+    @IBAction func didTouchAddButton(_ sender: Any) {
+        sequencer.add(drumNote: .bdrum, position: 0)
+    }
 }
 
