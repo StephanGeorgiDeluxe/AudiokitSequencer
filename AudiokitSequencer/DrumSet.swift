@@ -68,15 +68,20 @@ class DrumSet: AKMIDIInstrument {
     }
 
     private func play(note: MIDIByte, velocity: MIDIByte) {
-        switch Drums(rawValue: note) {
+        guard let drum = Drums(rawValue: note) else {
+            print( "Error playing note: \(note)")
+            return
+        }
+
+        switch drum {
         case .bdrum: bdrum.play(velocity)
         case .sdrum: sdrum.play(velocity)
+        case .clap: clap.play(velocity)
         case .hhOpen: hhOpen.play(velocity)
         case .hhClosed: hhClosed.play(velocity)
         case .tomLow: tomLow.play(velocity)
         case .tomMid: tomMid.play(velocity)
         case .tomHi: tomHi.play(velocity)
-        default: break
         }
     }
 
