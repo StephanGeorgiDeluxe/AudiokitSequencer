@@ -15,32 +15,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="n3q-8B-gni">
-                                <rect key="frame" x="181.5" y="388" width="51" height="120"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="S3r-Jd-dFX">
+                                <rect key="frame" x="16" y="60" width="382" height="200"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ku-oL-4Br" customClass="PadButton" customModule="AudiokitSequencer" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="hXj-CS-NRn"/>
+                                            <constraint firstAttribute="width" constant="200" id="ki9-vC-iG0"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="n3q-8B-gni">
+                                <rect key="frame" x="102" y="832" width="210" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGK-Vy-PIU">
-                                        <rect key="frame" x="0.0" y="0.0" width="51" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
                                         <state key="normal" title="Play"/>
                                         <connections>
                                             <action selector="didTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h3Q-VF-GLm"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="615-jX-la1">
-                                        <rect key="frame" x="0.0" y="30" width="51" height="30"/>
+                                        <rect key="frame" x="46" y="0.0" width="51" height="30"/>
                                         <state key="normal" title="loop on"/>
                                         <connections>
                                             <action selector="didTouchLoopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Yuw-wX-Pae"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b4j-km-6oo">
-                                        <rect key="frame" x="0.0" y="60" width="51" height="30"/>
+                                        <rect key="frame" x="113" y="0.0" width="51" height="30"/>
                                         <state key="normal" title="remove"/>
                                         <connections>
                                             <action selector="didTouchRemoveButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PhD-v8-TjF"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8W-iH-JuA">
-                                        <rect key="frame" x="0.0" y="90" width="51" height="30"/>
+                                        <rect key="frame" x="180" y="0.0" width="30" height="30"/>
                                         <state key="normal" title="add"/>
                                         <connections>
                                             <action selector="didTouchAddButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="X3h-Wi-Ocd"/>
@@ -51,8 +65,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="S3r-Jd-dFX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1dj-Qr-qXU"/>
                             <constraint firstItem="n3q-8B-gni" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5fP-Du-75J"/>
-                            <constraint firstItem="n3q-8B-gni" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Uxe-PV-vXM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="n3q-8B-gni" secondAttribute="bottom" id="9WD-pb-v2u"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S3r-Jd-dFX" secondAttribute="trailing" constant="16" id="Bcw-LO-f11"/>
+                            <constraint firstItem="S3r-Jd-dFX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="aVR-v2-JwE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

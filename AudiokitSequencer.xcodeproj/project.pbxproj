@@ -14,6 +14,9 @@
 		E8669C8E24EBDC6D0021645F /* DrumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C8D24EBDC6D0021645F /* DrumPad.swift */; };
 		E8669C9024EBE37E0021645F /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C8F24EBE37E0021645F /* Sequencer.swift */; };
 		E8669C9224ED24000021645F /* DrumSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9124ED24000021645F /* DrumSet.swift */; };
+		E8669C9524F7DE4B0021645F /* PadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9424F7DE4B0021645F /* PadButton.swift */; };
+		E8669C9724F917230021645F /* PadRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9624F917230021645F /* PadRenderer.swift */; };
+		E8669C9924FCF58B0021645F /* AudioSequencer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9824FCF58B0021645F /* AudioSequencer+UIColor.swift */; };
 		E8678D3C24C9DC9E006F8244 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D3B24C9DC9E006F8244 /* AppDelegate.swift */; };
 		E8678D3E24C9DC9E006F8244 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */; };
 		E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D3F24C9DC9E006F8244 /* ViewController.swift */; };
@@ -45,6 +48,9 @@
 		E8669C8D24EBDC6D0021645F /* DrumPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPad.swift; sourceTree = "<group>"; };
 		E8669C8F24EBE37E0021645F /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
 		E8669C9124ED24000021645F /* DrumSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumSet.swift; sourceTree = "<group>"; };
+		E8669C9424F7DE4B0021645F /* PadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadButton.swift; sourceTree = "<group>"; };
+		E8669C9624F917230021645F /* PadRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadRenderer.swift; sourceTree = "<group>"; };
+		E8669C9824FCF58B0021645F /* AudioSequencer+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioSequencer+UIColor.swift"; sourceTree = "<group>"; };
 		E8678D3824C9DC9E006F8244 /* AudiokitSequencer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudiokitSequencer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8678D3B24C9DC9E006F8244 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +104,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E8669C9324F7DE000021645F /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E8669C9424F7DE4B0021645F /* PadButton.swift */,
+				E8669C9624F917230021645F /* PadRenderer.swift */,
+				E8669C9824FCF58B0021645F /* AudioSequencer+UIColor.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		E8678D2F24C9DC9E006F8244 = {
 			isa = PBXGroup;
 			children = (
@@ -122,13 +138,14 @@
 		E8678D3A24C9DC9E006F8244 /* AudiokitSequencer */ = {
 			isa = PBXGroup;
 			children = (
+				E8669C9324F7DE000021645F /* UI */,
 				E8678D3B24C9DC9E006F8244 /* AppDelegate.swift */,
 				E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */,
 				E8678D3F24C9DC9E006F8244 /* ViewController.swift */,
 				E8669C8B24EA8CEE0021645F /* Sampler.swift */,
 				E8669C8F24EBE37E0021645F /* Sequencer.swift */,
-				E8669C9124ED24000021645F /* DrumSet.swift */,
 				E8669C8D24EBDC6D0021645F /* DrumPad.swift */,
+				E8669C9124ED24000021645F /* DrumSet.swift */,
 				E8678D4124C9DC9E006F8244 /* Main.storyboard */,
 				E8678D4424C9DC9F006F8244 /* Assets.xcassets */,
 				E8678D4624C9DC9F006F8244 /* LaunchScreen.storyboard */,
@@ -299,10 +316,13 @@
 			files = (
 				E8669C9224ED24000021645F /* DrumSet.swift in Sources */,
 				E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */,
+				E8669C9924FCF58B0021645F /* AudioSequencer+UIColor.swift in Sources */,
 				E8669C8C24EA8CEE0021645F /* Sampler.swift in Sources */,
+				E8669C9524F7DE4B0021645F /* PadButton.swift in Sources */,
 				E8678D3C24C9DC9E006F8244 /* AppDelegate.swift in Sources */,
 				E8669C8E24EBDC6D0021645F /* DrumPad.swift in Sources */,
 				E8678D3E24C9DC9E006F8244 /* SceneDelegate.swift in Sources */,
+				E8669C9724F917230021645F /* PadRenderer.swift in Sources */,
 				E8669C9024EBE37E0021645F /* Sequencer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
