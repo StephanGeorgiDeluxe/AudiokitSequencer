@@ -10,21 +10,14 @@ import UIKit
 
 enum PadState {
     case idle
-    case midiStep
     case active
 }
 
 class PadRenderer {
-
-    enum ColorShade: CGFloat {
-        case lighter = 0.2
-        case darker = -0.2
-    }
-
     var color: UIColor = .blue {
         didSet {
             strokeLayer.strokeColor = color.cgColor
-            let secondColor = color.darker(by: 10)
+            let secondColor = color.darker(by: 15)
             gradientLayer.colors = [color.cgColor, secondColor.cgColor]
             updateGradientLayer()
         }
@@ -100,18 +93,16 @@ class PadRenderer {
     private func updatePadColors(state: PadState) {
         switch state {
         case .idle:
-            color = .padBlueDark
-        case .midiStep:
             color = .padBlueLight
         case .active:
             color = .padSand
         }
     }
-}
 
-extension UIColor {
-    static let padBlue = UIColor(red: 0, green: 153/255, blue: 153/255, alpha: 1)
-    static let padBlueDark = UIColor(red: 51/255, green: 136/255, blue: 136/255, alpha: 1)
-    static let padBlueLight = UIColor(red: 85/255, green: 187/255, blue: 170/255, alpha: 1)
-    static let padSand = UIColor(red: 238/255, green: 221/255, blue: 153/255, alpha: 1)
+    func showHighlight() {
+        gradientLayer.setColors([color.cgColor, color.lighter().cgColor],
+                                animated: true,
+                                withDuration: 0.3,
+                                timingFunctionName: .easeOut)
+    }
 }
