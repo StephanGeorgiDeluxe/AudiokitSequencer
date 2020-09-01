@@ -74,6 +74,7 @@ class DrumSet: AKMIDIInstrument {
         }
 
         switch drum {
+        case .setUp: break
         case .bdrum: bdrum.play(velocity)
         case .sdrum: sdrum.play(velocity)
         case .clap: clap.play(velocity)

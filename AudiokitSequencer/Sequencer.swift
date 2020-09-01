@@ -31,6 +31,7 @@ enum NoteVelocity: MIDIVelocity {
 }
 
 enum Drums: UInt8, CaseIterable {
+    case setUp = 0
     case bdrum = 24
     case sdrum = 26
     case clap = 28
@@ -42,14 +43,15 @@ enum Drums: UInt8, CaseIterable {
 
     func trackNumber() -> Int {
         switch self {
-        case .bdrum: return 0
-        case .sdrum: return 1
-        case .clap: return 2
-        case .hhClosed: return 3
-        case .hhOpen: return 4
-        case .tomLow: return 5
-        case .tomMid: return 6
-        case .tomHi: return 7
+        case .setUp: return 0
+        case .bdrum: return 1
+        case .sdrum: return 2
+        case .clap: return 3
+        case .hhClosed: return 4
+        case .hhOpen: return 5
+        case .tomLow: return 6
+        case .tomMid: return 7
+        case .tomHi: return 8
         }
     }
 
