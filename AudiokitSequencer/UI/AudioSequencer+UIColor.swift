@@ -10,6 +10,11 @@ import UIKit
 
 extension UIColor {
 
+    static let padBlue = UIColor(red: 0, green: 153/255, blue: 153/255, alpha: 1)
+    static let padBlueDark = UIColor(red: 51/255, green: 136/255, blue: 136/255, alpha: 1)
+    static let padBlueLight = UIColor(red: 85/255, green: 187/255, blue: 170/255, alpha: 1)
+    static let padSand = UIColor(red: 238/255, green: 221/255, blue: 153/255, alpha: 1)
+
     func lighter(by percentage: CGFloat = 30.0) -> UIColor {
         return self.adjust(by: abs(percentage)) ?? self
     }
