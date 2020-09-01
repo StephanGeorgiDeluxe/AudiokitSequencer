@@ -19,6 +19,7 @@ class PadButtonFactory {
         button.widthAnchor.constraint(equalToConstant: dimension).isActive = true
         button.heightAnchor.constraint(equalToConstant: dimension).isActive = true
         button.padState = state
+        button.addTarget(self, action: #selector(didTouch(sender:)), for: .touchUpInside)
         return button
     }
 
@@ -26,7 +27,6 @@ class PadButtonFactory {
         var buttons: [PadButton] = []
         for state in states {
             let button = self.button(state: state)
-            button.addTarget(self, action: #selector(didTouch(sender:)), for: .touchUpInside)
             buttons.append(button)
         }
         return buttons

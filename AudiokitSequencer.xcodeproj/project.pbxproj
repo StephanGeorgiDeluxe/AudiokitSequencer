@@ -166,21 +166,21 @@
 		E8678D3A24C9DC9E006F8244 /* AudiokitSequencer */ = {
 			isa = PBXGroup;
 			children = (
-				E8669CA624FEA7650021645F /* TrackView */,
-				E8669CA224FEA4C60021645F /* Extensions */,
-				E8669C9324F7DE000021645F /* PadButton */,
-				E8669C9A24FD02450021645F /* PadButtonFactory.swift */,
+				E8678D4924C9DC9F006F8244 /* Info.plist */,
 				E8678D3B24C9DC9E006F8244 /* AppDelegate.swift */,
-				E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */,
-				E8678D3F24C9DC9E006F8244 /* ViewController.swift */,
-				E8669C8B24EA8CEE0021645F /* Sampler.swift */,
-				E8669C8F24EBE37E0021645F /* Sequencer.swift */,
 				E8669C8D24EBDC6D0021645F /* DrumPad.swift */,
 				E8669C9124ED24000021645F /* DrumSet.swift */,
-				E8678D4124C9DC9E006F8244 /* Main.storyboard */,
+				E8669C9A24FD02450021645F /* PadButtonFactory.swift */,
+				E8669C8B24EA8CEE0021645F /* Sampler.swift */,
+				E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */,
+				E8669C8F24EBE37E0021645F /* Sequencer.swift */,
+				E8678D3F24C9DC9E006F8244 /* ViewController.swift */,
 				E8678D4424C9DC9F006F8244 /* Assets.xcassets */,
 				E8678D4624C9DC9F006F8244 /* LaunchScreen.storyboard */,
-				E8678D4924C9DC9F006F8244 /* Info.plist */,
+				E8678D4124C9DC9E006F8244 /* Main.storyboard */,
+				E8669CA224FEA4C60021645F /* Extensions */,
+				E8669C9324F7DE000021645F /* PadButton */,
+				E8669CA624FEA7650021645F /* TrackView */,
 			);
 			path = AudiokitSequencer;
 			sourceTree = "<group>";
