@@ -70,8 +70,10 @@ enum ShiftDirection {
 }
 
 class Sequencer {
-    private var preShiftBeats: Double = 1.0
+    var preShiftBeats: Double = 1.0
+    var looplength: Int = 16
     private var grooveDelay: Double = 0.04
+
 
     private let sequencer = AKAppleSequencer()
     private var tracks: Array<AKMusicTrack> = []
@@ -82,7 +84,7 @@ class Sequencer {
 
     init() {
         setUpCallBackInstrument()
-        setUpSequncer()
+        setUpSequencer()
     }
 
     private func setUpCallBackInstrument() {
@@ -91,7 +93,7 @@ class Sequencer {
         }
     }
 
-    private func setUpSequncer() {
+    private func setUpSequencer() {
         sequencer.clearRange(start: AKDuration(beats: 0), duration: AKDuration(beats: 100))
         sequencer.setTempo(120)
 
@@ -140,7 +142,9 @@ class Sequencer {
              duration: NoteLength = .whole,
              velocity: NoteVelocity = .full) {
 
-        let position = processNotePosition(position)
+        let position = processNotePosition(position,
+                                           preShiftBeats: preShiftBeats,
+                                           grooveDelay: grooveDelay)
 
         add(note: drumNote.note(velocity: velocity.rawValue,
                                 duration: duration.duration(),
@@ -157,7 +161,9 @@ class Sequencer {
     func remove(drumNote: Drums,
                 position: Double) {
 
-        let position = processNotePosition(position)
+        let position = processNotePosition(position,
+                                           preShiftBeats: preShiftBeats,
+                                           grooveDelay: grooveDelay)
 
         remove(note: drumNote.note(velocity: .max,
                                    duration: AKDuration(beats: 1),
@@ -174,13 +180,25 @@ class Sequencer {
 
     }
 
-    private func processNotePosition(_ position: Double) -> Double {
+    func processNotePosition(_ position: Double, preShiftBeats: Double, grooveDelay: Double) -> Double {
 
         var processedPosition = position + preShiftBeats
         let remainder = position.truncatingRemainder(dividingBy: 1.0)
 
         switch remainder {
-         case 0.25, 0.75: processedPosition =  processedPosition + grooveDelay
+        case 0.25, 0.75: processedPosition =  processedPosition + grooveDelay
+        default: break
+        }
+
+        return processedPosition
+    }
+
+    static func processBackNotePosition(_ position: Double, preShiftBeats: Double, grooveDelay: Double) -> Double {
+        var processedPosition = position - preShiftBeats
+        let remainder = position.truncatingRemainder(dividingBy: 1.0)
+        switch remainder {
+        case 0.25 + grooveDelay,
+             0.75 + grooveDelay: processedPosition =  processedPosition - grooveDelay
         default: break
         }
 
@@ -212,24 +230,20 @@ class Sequencer {
     func loopEnabled() -> Bool {
         return sequencer.loopEnabled
     }
-}
 
-extension Sequencer {
+    func activeNotePositions(_ drum: Drums) -> [Int] {
+        let trackNumber = drum.trackNumber()
+        let track = sequencer.tracks[trackNumber]
+        let midiData = track.getMIDINoteData()
 
-    func shiftAllMidiNotes(_ direction: ShiftDirection) {
-        for track in sequencer.tracks {
-            let midiNotes = track.getMIDINoteData()
-            let shiftedNotes = midiNotes.map { (note) -> AKMIDINoteData in
-                var shiftedNote = note
-                switch direction {
-                case .fowards:
-                    shiftedNote.position = AKDuration(beats: note.position.beats + preShiftBeats)
-                case .backwards:
-                    shiftedNote.position = AKDuration(beats: note.position.beats - preShiftBeats)
-                }
-                return shiftedNote
-            }
-            track.replaceMIDINoteData(with: shiftedNotes)
+        let positions = midiData.map { (note) -> Int in
+            let quantizised = Sequencer.processBackNotePosition(note.position.beats,
+                                                                preShiftBeats: preShiftBeats,
+                                                                grooveDelay: grooveDelay)
+            let quarterNotePositions = Int(quantizised / NoteLength.quarter.rawValue)
+            return quarterNotePositions
         }
+
+        return positions
     }
 }

@@ -40,11 +40,14 @@ class PadButtonFactory {
         sender.didTouchButton()
     }
 
-    static func trackStackView(buttons: [PadButton]) -> UIStackView {
-        let stackView = UIStackView(arrangedSubviews: buttons)
-        stackView.axis = .horizontal
-        stackView.spacing = spacing
-        return stackView
+    static func trackView(drum: Drums, sequencer: Sequencer) -> TrackView {
+        let positions = sequencer.activeNotePositions(drum)
+        let trackViewModel = TrackViewModel(drumsType: drum,
+                                            positions: positions,
+                                            loopLength: sequencer.looplength)
+        let trackView = TrackView(trackViewModel: trackViewModel)
+
+        return trackView
     }
 }
 

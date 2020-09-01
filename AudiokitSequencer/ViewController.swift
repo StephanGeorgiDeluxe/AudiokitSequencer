@@ -53,14 +53,20 @@ class ViewController: UIViewController {
     }
 
     func fillTracks() {
+        let trackViewTypes: [Drums] = [.bdrum,
+                                       .sdrum,
+                                       .clap,
+                                       .hhClosed,
+                                       .hhOpen,
+                                       .tomHi,
+                                       .tomMid,
+                                       .tomLow ]
 
-        let buttons = PadButtonFactory.buttons(states: [.active, .idle, .idle, .idle,
-                                                        .active, .idle, .idle, .idle,
-                                                        .active, .idle, .idle, .idle,
-                                                        .active, .idle, .idle, .idle])
-        
-        let stackView = PadButtonFactory.trackStackView(buttons: buttons)
-        tracksStackView.addArrangedSubview(stackView)
+        for drum in trackViewTypes {
+            let track = PadButtonFactory.trackView(drum: drum, sequencer: sequencer)
+            tracksStackView.addArrangedSubview(track.stackView)
+            track.updateButtons()
+        }
     }
 
     @IBAction func didTouchUpInside(_ sender: Any) {
