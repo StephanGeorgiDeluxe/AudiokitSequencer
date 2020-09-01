@@ -23,15 +23,6 @@ class PadButtonFactory {
         return button
     }
 
-    static func buttons(states: [PadState]) -> [PadButton] {
-        var buttons: [PadButton] = []
-        for state in states {
-            let button = self.button(state: state)
-            buttons.append(button)
-        }
-        return buttons
-    }
-
     @objc static func didTouch(sender: UIControl) {
         guard let sender = sender as? PadButton else {
             return
