@@ -18,6 +18,9 @@ class ViewController: UIViewController {
 
     let drumSet = DrumSet()
 
+    var padButtons: [PadButton] = []
+
+    @IBOutlet weak var tracksStackView: UIStackView!
     @IBOutlet weak var startButton: UIButton!
 
     @IBOutlet weak var loopButton: UIButton!
@@ -35,6 +38,29 @@ class ViewController: UIViewController {
         }
 
         sequencer.enableLooping()
+
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fillTracks()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+    }
+
+    func fillTracks() {
+
+        let buttons = PadButtonFactory.buttons(states: [.active, .idle, .idle, .idle,
+                                                        .active, .idle, .idle, .idle,
+                                                        .active, .idle, .idle, .idle,
+                                                        .active, .idle, .idle, .idle])
+        
+        let stackView = PadButtonFactory.trackStackView(buttons: buttons)
+        tracksStackView.addArrangedSubview(stackView)
     }
 
     @IBAction func didTouchUpInside(_ sender: Any) {

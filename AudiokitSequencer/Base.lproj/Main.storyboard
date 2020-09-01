@@ -15,19 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="S3r-Jd-dFX">
-                                <rect key="frame" x="16" y="60" width="382" height="200"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ku-oL-4Br" customClass="PadButton" customModule="AudiokitSequencer" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="hXj-CS-NRn"/>
-                                            <constraint firstAttribute="width" constant="200" id="ki9-vC-iG0"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="S3r-Jd-dFX">
+                                <rect key="frame" x="16" y="60" width="382" height="756"/>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="n3q-8B-gni">
                                 <rect key="frame" x="102" y="832" width="210" height="30"/>
@@ -61,21 +50,26 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="a3Q-Yg-ebH"/>
+                                </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="S3r-Jd-dFX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1dj-Qr-qXU"/>
                             <constraint firstItem="n3q-8B-gni" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5fP-Du-75J"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="n3q-8B-gni" secondAttribute="bottom" id="9WD-pb-v2u"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S3r-Jd-dFX" secondAttribute="trailing" constant="16" id="Bcw-LO-f11"/>
                             <constraint firstItem="S3r-Jd-dFX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="aVR-v2-JwE"/>
+                            <constraint firstItem="n3q-8B-gni" firstAttribute="top" secondItem="S3r-Jd-dFX" secondAttribute="bottom" constant="16" id="qq3-LY-iBq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="loopButton" destination="615-jX-la1" id="rwh-V8-uDS"/>
                         <outlet property="startButton" destination="aGK-Vy-PIU" id="3fu-6A-lSD"/>
+                        <outlet property="tracksStackView" destination="S3r-Jd-dFX" id="rHP-MB-Zb3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

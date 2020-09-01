@@ -17,6 +17,8 @@
 		E8669C9524F7DE4B0021645F /* PadButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9424F7DE4B0021645F /* PadButton.swift */; };
 		E8669C9724F917230021645F /* PadRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9624F917230021645F /* PadRenderer.swift */; };
 		E8669C9924FCF58B0021645F /* AudioSequencer+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9824FCF58B0021645F /* AudioSequencer+UIColor.swift */; };
+		E8669C9B24FD02450021645F /* PadButtonFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9A24FD02450021645F /* PadButtonFactory.swift */; };
+		E8669C9D24FD14640021645F /* AudioSequencer+UIGradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C9C24FD14640021645F /* AudioSequencer+UIGradientLayer.swift */; };
 		E8678D3C24C9DC9E006F8244 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D3B24C9DC9E006F8244 /* AppDelegate.swift */; };
 		E8678D3E24C9DC9E006F8244 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */; };
 		E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D3F24C9DC9E006F8244 /* ViewController.swift */; };
@@ -51,6 +53,8 @@
 		E8669C9424F7DE4B0021645F /* PadButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadButton.swift; sourceTree = "<group>"; };
 		E8669C9624F917230021645F /* PadRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadRenderer.swift; sourceTree = "<group>"; };
 		E8669C9824FCF58B0021645F /* AudioSequencer+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioSequencer+UIColor.swift"; sourceTree = "<group>"; };
+		E8669C9A24FD02450021645F /* PadButtonFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadButtonFactory.swift; sourceTree = "<group>"; };
+		E8669C9C24FD14640021645F /* AudioSequencer+UIGradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioSequencer+UIGradientLayer.swift"; sourceTree = "<group>"; };
 		E8678D3824C9DC9E006F8244 /* AudiokitSequencer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudiokitSequencer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8678D3B24C9DC9E006F8244 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8678D3D24C9DC9E006F8244 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,7 +113,9 @@
 			children = (
 				E8669C9424F7DE4B0021645F /* PadButton.swift */,
 				E8669C9624F917230021645F /* PadRenderer.swift */,
+				E8669C9A24FD02450021645F /* PadButtonFactory.swift */,
 				E8669C9824FCF58B0021645F /* AudioSequencer+UIColor.swift */,
+				E8669C9C24FD14640021645F /* AudioSequencer+UIGradientLayer.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -314,6 +320,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8669C9D24FD14640021645F /* AudioSequencer+UIGradientLayer.swift in Sources */,
 				E8669C9224ED24000021645F /* DrumSet.swift in Sources */,
 				E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */,
 				E8669C9924FCF58B0021645F /* AudioSequencer+UIColor.swift in Sources */,
@@ -324,6 +331,7 @@
 				E8678D3E24C9DC9E006F8244 /* SceneDelegate.swift in Sources */,
 				E8669C9724F917230021645F /* PadRenderer.swift in Sources */,
 				E8669C9024EBE37E0021645F /* Sequencer.swift in Sources */,
+				E8669C9B24FD02450021645F /* PadButtonFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
