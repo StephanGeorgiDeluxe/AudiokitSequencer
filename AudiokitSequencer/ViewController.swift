@@ -20,7 +20,7 @@ class ViewController: UIViewController {
 
     var padButtons: [PadButton] = []
 
-    @IBOutlet weak var tracksStackView: UIStackView!
+    @IBOutlet weak var tracksStackView: TracksStackView!
     @IBOutlet weak var startButton: UIButton!
 
     @IBOutlet weak var loopButton: UIButton!
@@ -53,20 +53,16 @@ class ViewController: UIViewController {
     }
 
     func fillTracks() {
-        let trackViewTypes: [Drums] = [.bdrum,
-                                       .sdrum,
-                                       .clap,
-                                       .hhClosed,
-                                       .hhOpen,
-                                       .tomHi,
-                                       .tomMid,
-                                       .tomLow ]
+        tracksStackView.fillTracks(sequencer: sequencer,
+                                   tracks: [.bdrum,
+                                            .sdrum,
+                                            .clap,
+                                            .hhClosed,
+                                            .hhOpen,
+                                            .tomHi,
+                                            .tomMid,
+                                            .tomLow ])
 
-        for drum in trackViewTypes {
-            let track = PadButtonFactory.trackView(drum: drum, sequencer: sequencer)
-            tracksStackView.addArrangedSubview(track.stackView)
-            track.updateButtons()
-        }
     }
 
     @IBAction func didTouchUpInside(_ sender: Any) {
