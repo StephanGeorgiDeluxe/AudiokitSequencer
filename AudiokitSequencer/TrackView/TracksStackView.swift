@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioKit
 
 class TracksStackView: UIStackView {
     var tracks: [TrackView] = []
@@ -21,7 +22,7 @@ class TracksStackView: UIStackView {
         commonInit()
     }
 
-    func commonInit() {
+    private func commonInit() {
         axis = .vertical
         alignment = .fill
         spacing = 8
@@ -33,6 +34,25 @@ class TracksStackView: UIStackView {
             self.tracks.append(track)
             addArrangedSubview(track.stackView)
             track.updateButtons()
+        }
+    }
+
+    func receivedMidiCallBack(statusByte: MIDIByte,
+                              note: MIDIByte,
+                              velocity: MIDIByte) {
+
+        guard let status = AKMIDIStatus(byte: statusByte),
+            let drum = Drums(rawValue: note),
+            status.type == .noteOn,
+            drum == .setUp else { return }
+
+        showHighlight(note: note, velocity: velocity)
+    }
+
+    func showHighlight(note: MIDIByte, velocity: MIDIByte) {
+        let index = Int(velocity - 1)
+        for track in tracks {
+            track.viewModel.showHighlight(position: index)
         }
     }
 }

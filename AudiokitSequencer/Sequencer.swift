@@ -105,6 +105,12 @@ class Sequencer {
 
         sequencer.setGlobalMIDIOutput(callbackInstrument.midiIn)
 
+        for index in 0..<16 {
+            let pos = Double(index * 0.25)
+            let velocity = index + 1
+            addSetUpNote(position: pos, velocity: MIDIVelocity(velocity))
+        }
+
         add(drumNote: .bdrum, position: 0)
         add(drumNote: .bdrum, position: 1)
         add(drumNote: .bdrum, position: 2)
@@ -128,13 +134,23 @@ class Sequencer {
         add(drumNote: .tomMid, position: 1.75)
         add(drumNote: .tomLow, position: 2.25)
         add(drumNote: .tomMid, position: 3.25)
-        add(drumNote: .tomLow, position: 3.5)
+        add(drumNote: .tomLow, position: 3.5, duration: .half)
 
         add(drumNote: .clap, position: 0.75)
         add(drumNote: .clap, position: 1, velocity: .lowHigh)
         add(drumNote: .clap, position: 2.25, velocity: .lower)
 
         sequencer.preroll()
+    }
+
+    func addSetUpNote(position: Double, velocity: MIDIVelocity) {
+        let position = processNotePosition(position,
+                                           preShiftBeats: preShiftBeats,
+                                           grooveDelay: grooveDelay)
+
+        add(note: Drums.setUp.note(velocity: velocity,
+                                   duration: NoteLength.quarter.duration(),
+                                   position: AKDuration(beats: position)))
     }
 
     func add(drumNote: Drums,
@@ -193,19 +209,10 @@ class Sequencer {
         return processedPosition
     }
 
-    static func processBackNotePosition(_ position: Double, preShiftBeats: Double, grooveDelay: Double) -> Double {
-        var processedPosition = position - preShiftBeats
-        let remainder = position.truncatingRemainder(dividingBy: 1.0)
-        switch remainder {
-        case 0.25 + grooveDelay,
-             0.75 + grooveDelay: processedPosition =  processedPosition - grooveDelay
-        default: break
-        }
-
-        return processedPosition
-    }
-
     func play() {
+//        sequencer.enableLooping(AKDuration(beats: 4))
+        sequencer.setLoopInfo(AKDuration(beats: 4), numberOfLoops: 100)
+        sequencer.setLength(AKDuration(beats: 4 + preShiftBeats))
         sequencer.enableLooping(AKDuration(beats: 4))
         sequencer.play()
     }
@@ -237,13 +244,25 @@ class Sequencer {
         let midiData = track.getMIDINoteData()
 
         let positions = midiData.map { (note) -> Int in
-            let quantizised = Sequencer.processBackNotePosition(note.position.beats,
-                                                                preShiftBeats: preShiftBeats,
-                                                                grooveDelay: grooveDelay)
+            let quantizised = processBackNotePosition(note.position.beats,
+                                                      preShiftBeats: preShiftBeats,
+                                                      grooveDelay: grooveDelay)
             let quarterNotePositions = Int(quantizised / NoteLength.quarter.rawValue)
             return quarterNotePositions
         }
 
         return positions
+    }
+
+    func processBackNotePosition(_ position: Double, preShiftBeats: Double, grooveDelay: Double) -> Double {
+        var processedPosition = position - preShiftBeats
+        let remainder = position.truncatingRemainder(dividingBy: 1.0)
+        switch remainder {
+        case 0.25 + grooveDelay,
+             0.75 + grooveDelay: processedPosition =  processedPosition - grooveDelay
+        default: break
+        }
+
+        return processedPosition
     }
 }

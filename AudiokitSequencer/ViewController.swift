@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     func setUpSequencer() {
         sequencer.callBack = { (statusByte, note, velocity) in
             self.drumSet.receivedMidiCallBack(statusByte: statusByte, note: note, velocity: velocity)
+            self.tracksStackView.receivedMidiCallBack(statusByte: statusByte, note: note, velocity: velocity)
         }
 
         sequencer.enableLooping()

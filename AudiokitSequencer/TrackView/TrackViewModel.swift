@@ -35,4 +35,11 @@ class TrackViewModel {
 
         self.buttons = buttons
     }
+    
+    func showHighlight(position: Int) {
+        DispatchQueue.main.async {
+            let button = self.buttons[position]
+            button.showHighlight()
+        }
+    }
 }
