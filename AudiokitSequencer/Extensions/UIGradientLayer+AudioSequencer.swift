@@ -11,7 +11,9 @@ import UIKit
 extension CAGradientLayer {
 
     func setColors(_ newColors: [CGColor],
+                   fromColors: [CGColor],
                    animated: Bool = true,
+                   autoreverse: Bool = false,
                    withDuration duration: TimeInterval = 0,
                    timingFunctionName name: CAMediaTimingFunctionName? = nil) {
 
@@ -21,12 +23,13 @@ extension CAGradientLayer {
         }
 
         let colorAnimation = CABasicAnimation(keyPath: "colors")
-        colorAnimation.fromValue = colors
+        colorAnimation.fromValue = fromColors
         colorAnimation.toValue = newColors
         colorAnimation.duration = duration
         colorAnimation.isRemovedOnCompletion = false
         colorAnimation.fillMode = CAMediaTimingFillMode.forwards
         colorAnimation.timingFunction = CAMediaTimingFunction(name: name ?? .linear)
+        colorAnimation.autoreverses = autoreverse
         add(colorAnimation, forKey: "colorsChangeAnimation")
     }
 }

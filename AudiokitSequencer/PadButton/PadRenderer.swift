@@ -14,6 +14,7 @@ enum PadState {
 }
 
 class PadRenderer {
+    static let animationDuration: TimeInterval = 0.3
     var color: UIColor = .blue {
         didSet {
             strokeLayer.strokeColor = color.cgColor
@@ -100,9 +101,6 @@ class PadRenderer {
     }
 
     func showHighlight() {
-        gradientLayer.setColors([color.cgColor, color.lighter().cgColor],
-                                animated: true,
-                                withDuration: 0.3,
-                                timingFunctionName: .easeOut)
+        gradientLayer.setColors([color.cgColor, color.darker(by: 15).cgColor], fromColors: [color.cgColor, color.lighter().cgColor], withDuration: PadRenderer.animationDuration)
     }
 }
