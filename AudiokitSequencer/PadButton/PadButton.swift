@@ -43,4 +43,8 @@ class PadButton: UIControl {
     func didTouchButton() {
         renderer.showHighlight()
     }
+
+    func showHighlight() {
+        renderer.showHighlight()
+    }
 }
