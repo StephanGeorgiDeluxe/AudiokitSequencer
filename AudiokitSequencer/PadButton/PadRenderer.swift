@@ -14,18 +14,20 @@ enum PadState {
 }
 
 class PadRenderer {
-    static let animationDuration: TimeInterval = 0.3
+    static let animationDuration: TimeInterval = 0.2
     var color: UIColor = .blue {
         didSet {
             strokeLayer.strokeColor = color.cgColor
             let secondColor = color.darker(by: 15)
             gradientLayer.colors = [color.cgColor, secondColor.cgColor]
+            highlightLayer.colors = [UIColor.clear.cgColor, UIColor.clear.cgColor]
             updateGradientLayer()
         }
     }
 
     let strokeLayer = CAShapeLayer()
     let gradientLayer = CAGradientLayer()
+    let highlightLayer = CAGradientLayer()
     private let maskLayer = CAShapeLayer()
 
     var state: PadState = .idle {
@@ -61,6 +63,7 @@ class PadRenderer {
         state = padState
         strokeLayer.fillColor = UIColor.clear.cgColor
         setUpGradientLayer()
+        setUpHighlightLayer()
     }
 
     private func setUpGradientLayer() {
@@ -68,11 +71,17 @@ class PadRenderer {
         gradientLayer.locations = [0.0, 1.0]
     }
 
+    private func setUpHighlightLayer() {
+        highlightLayer.type = .radial
+        highlightLayer.locations = [0.0, 1.0]
+    }
+
     func updateBounds(_ bounds: CGRect) {
         strokeLayer.bounds = bounds
         strokeLayer.position = CGPoint(x: bounds.midX, y: bounds.midY)
         updateStrokeLayerPath()
         updateGradientLayer()
+        updateHighlightLayer()
         updateMaskLayer()
     }
 
@@ -83,12 +92,20 @@ class PadRenderer {
         gradientLayer.endPoint = CGPoint(x: 1.5, y: 1.5)
     }
 
+    private func updateHighlightLayer() {
+        let bounds = strokeLayer.bounds
+        highlightLayer.frame = bounds
+        highlightLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        highlightLayer.endPoint = CGPoint(x: 1.5, y: 1.5)
+    }
+
     private func updateMaskLayer() {
         maskLayer.frame = strokeLayer.bounds
         let rect = roundedRect(layer: maskLayer)
         maskLayer.fillColor = UIColor.black.cgColor
         maskLayer.path = rect.cgPath
         gradientLayer.mask = maskLayer
+        highlightLayer.mask = maskLayer
     }
 
     private func updatePadColors(state: PadState) {
@@ -100,7 +117,11 @@ class PadRenderer {
         }
     }
 
-    func showHighlight() {
+    func showTouch() {
         gradientLayer.setColors([color.cgColor, color.darker(by: 15).cgColor], fromColors: [color.cgColor, color.lighter().cgColor], withDuration: PadRenderer.animationDuration)
+    }
+
+    func showHighlight() {
+        highlightLayer.setColors([UIColor.clear.cgColor, UIColor.clear.cgColor], fromColors: [UIColor.white.cgColor, UIColor.white.darker(by: 15).cgColor], withDuration: PadRenderer.animationDuration)
     }
 }
