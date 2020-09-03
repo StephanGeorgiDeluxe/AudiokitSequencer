@@ -38,10 +38,11 @@ class PadButton: UIControl {
         renderer.state = .idle
         layer.addSublayer(renderer.gradientLayer)
         layer.addSublayer(renderer.strokeLayer)
+        layer.addSublayer(renderer.highlightLayer)
     }
 
     func didTouchButton() {
-        renderer.showHighlight()
+        renderer.showTouch()
     }
 
     func showHighlight() {
