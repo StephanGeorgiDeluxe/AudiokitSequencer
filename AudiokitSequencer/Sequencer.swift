@@ -287,8 +287,6 @@ class Sequencer {
         case true: remove(drumNote: drumType, position: position)
         case false: add(drumNote: drumType, position: position)
         }
-        self.midiDataDidChange?(drumType, index, isActive == false)
-
-        print("is active: \(isActive), drum: \(drumType), position: \(position)")
+        midiDataDidChange?(drumType, index, isActive == false)
     }
 }
