@@ -19,24 +19,20 @@ class PadButtonFactory {
         button.widthAnchor.constraint(equalToConstant: dimension).isActive = true
         button.heightAnchor.constraint(equalToConstant: dimension).isActive = true
         button.padState = state
-        button.addTarget(self, action: #selector(didTouch(sender:)), for: .touchUpInside)
         return button
     }
 
-    @objc static func didTouch(sender: UIControl) {
-        guard let sender = sender as? PadButton else {
-            return
+    static func trackViews(tracksViewModel: TracksStackViewModel) -> [TrackView]{
+        var trackViews: [TrackView] = []
+        for trackViewModel in tracksViewModel.trackViewModels {
+            let track = PadButtonFactory.trackView(viewModel: trackViewModel)
+            trackViews.append(track)
         }
-
-        sender.didTouchButton()
+        return trackViews
     }
 
-    static func trackView(drum: Drums, sequencer: Sequencer) -> TrackView {
-        let positions = sequencer.activeNotePositions(drum)
-        let trackViewModel = TrackViewModel(drumsType: drum,
-                                            positions: positions,
-                                            loopLength: sequencer.looplength)
-        let trackView = TrackView(trackViewModel: trackViewModel)
+    static func trackView(viewModel: TrackViewModel) -> TrackView {
+        let trackView = TrackView(trackViewModel: viewModel)
 
         return trackView
     }
