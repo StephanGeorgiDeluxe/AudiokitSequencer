@@ -55,6 +55,20 @@ enum Drums: UInt8, CaseIterable {
         }
     }
 
+    func stackNumber() -> Int {
+        switch self {
+        case .setUp: return -1
+        case .bdrum: return 0
+        case .sdrum: return 1
+        case .clap: return 2
+        case .hhClosed: return 3
+        case .hhOpen: return 4
+        case .tomLow: return 5
+        case .tomMid: return 6
+        case .tomHi: return 7
+        }
+    }
+
     func note(velocity: MIDIVelocity = 127, duration: AKDuration = AKDuration(beats: 1), position: AKDuration = AKDuration(beats: 0)) -> AKMIDINoteData {
         return AKMIDINoteData(noteNumber: self.rawValue,
                               velocity: velocity,
@@ -73,12 +87,11 @@ class Sequencer {
     var preShiftBeats: Double = 1.0
     var looplength: Int = 16
     private var grooveDelay: Double = 0.04
-
-
     private let sequencer = AKAppleSequencer()
     private var tracks: Array<AKMusicTrack> = []
-
     private let callbackInstrument = AKMIDICallbackInstrument()
+
+    var midiDataDidChange: ((Drums, Int, Bool) -> Void)?
 
     var callBack: AKMIDICallback?
 
@@ -210,7 +223,6 @@ class Sequencer {
     }
 
     func play() {
-//        sequencer.enableLooping(AKDuration(beats: 4))
         sequencer.setLoopInfo(AKDuration(beats: 4), numberOfLoops: 100)
         sequencer.setLength(AKDuration(beats: 4 + preShiftBeats))
         sequencer.enableLooping(AKDuration(beats: 4))
@@ -264,5 +276,19 @@ class Sequencer {
         }
 
         return processedPosition
+    }
+
+    func toggleNote(index: Int, drumType: Drums) {
+        let activePositionIndexes = activeNotePositions(drumType)
+        let isActive = activePositionIndexes.filter({ $0 == index }).count > 0
+        let position = Double(index * NoteLength.quarter.rawValue)
+
+        switch isActive {
+        case true: remove(drumNote: drumType, position: position)
+        case false: add(drumNote: drumType, position: position)
+        }
+        self.midiDataDidChange?(drumType, index, isActive == false)
+
+        print("is active: \(isActive), drum: \(drumType), position: \(position)")
     }
 }
