@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9AD589A890606865CBEBEAAB /* Pods_AudiokitSequencer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5861E67F48C0582450AD7276 /* Pods_AudiokitSequencer.framework */; };
 		BD5FC3C74054CE1C15E61CF0 /* Pods_AudiokitSequencerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */; };
+		E80DDB9B2500DB86001ADBF9 /* TracksStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9A2500DB86001ADBF9 /* TracksStackViewModel.swift */; };
+		E80DDB9D2500EB64001ADBF9 /* UIControl+AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9C2500EB64001ADBF9 /* UIControl+AudioSequencer.swift */; };
 		E8669C8A24EA8CD10021645F /* Drums in Resources */ = {isa = PBXBuildFile; fileRef = E8669C8924EA8CD10021645F /* Drums */; };
 		E8669C8C24EA8CEE0021645F /* Sampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C8B24EA8CEE0021645F /* Sampler.swift */; };
 		E8669C8E24EBDC6D0021645F /* DrumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C8D24EBDC6D0021645F /* DrumPad.swift */; };
@@ -49,6 +51,8 @@
 		5861E67F48C0582450AD7276 /* Pods_AudiokitSequencer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudiokitSequencer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CA7515D0B91C10E14D1E3DF /* Pods-AudiokitSequencer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudiokitSequencer.release.xcconfig"; path = "Target Support Files/Pods-AudiokitSequencer/Pods-AudiokitSequencer.release.xcconfig"; sourceTree = "<group>"; };
 		A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudiokitSequencerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E80DDB9A2500DB86001ADBF9 /* TracksStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksStackViewModel.swift; sourceTree = "<group>"; };
+		E80DDB9C2500EB64001ADBF9 /* UIControl+AudioSequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+AudioSequencer.swift"; sourceTree = "<group>"; };
 		E8669C8924EA8CD10021645F /* Drums */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Drums; path = Samples/Drums; sourceTree = "<group>"; };
 		E8669C8B24EA8CEE0021645F /* Sampler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sampler.swift; sourceTree = "<group>"; };
 		E8669C8D24EBDC6D0021645F /* DrumPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPad.swift; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 				E8669C9824FCF58B0021645F /* UIColor+AudioSequencer.swift */,
 				E8669CA024FE541A0021645F /* UIView+AudioSequencer.swift */,
 				E8669C9C24FD14640021645F /* UIGradientLayer+AudioSequencer.swift */,
+				E80DDB9C2500EB64001ADBF9 /* UIControl+AudioSequencer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				E8669C9E24FE52930021645F /* TrackView.swift */,
 				E8669CA424FEA6B70021645F /* TrackViewModel.swift */,
 				E8D0423C24FEA9900008F888 /* TracksStackView.swift */,
+				E80DDB9A2500DB86001ADBF9 /* TracksStackViewModel.swift */,
 			);
 			path = TrackView;
 			sourceTree = "<group>";
@@ -352,7 +358,9 @@
 				E8669C9224ED24000021645F /* DrumSet.swift in Sources */,
 				E8669C9F24FE52930021645F /* TrackView.swift in Sources */,
 				E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */,
+				E80DDB9B2500DB86001ADBF9 /* TracksStackViewModel.swift in Sources */,
 				E8669C8C24EA8CEE0021645F /* Sampler.swift in Sources */,
+				E80DDB9D2500EB64001ADBF9 /* UIControl+AudioSequencer.swift in Sources */,
 				E8669C9524F7DE4B0021645F /* PadButton.swift in Sources */,
 				E8669CA524FEA6B70021645F /* TrackViewModel.swift in Sources */,
 				E8678D3C24C9DC9E006F8244 /* AppDelegate.swift in Sources */,
