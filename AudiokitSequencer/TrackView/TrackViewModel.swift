@@ -9,24 +9,36 @@
 import Foundation
 
 class TrackViewModel {
+
+    var didPressButton: ((PadButton, Int) -> Void)?
+
     let drumType: Drums
     var activeNotePositions: [Int]
-    var length: Int
+    var length: Int = 0 {
+        didSet {
+            updateButtons()
+        }
+    }
     var buttons: [PadButton] = []
 
     init(drumsType: Drums, positions: [Int], loopLength: Int) {
         drumType = drumsType
         activeNotePositions = positions
-        length = loopLength
+        self.length = loopLength
 
-        setUpButtons()
+        updateButtons()
     }
 
-    private func setUpButtons() {
-
+    private func updateButtons() {
         var buttons: [PadButton] = []
-        for _ in 0..<length {
-            buttons.append(PadButtonFactory.button(state: .idle))
+        for index in 0 ..< length {
+            let button = PadButtonFactory.button(state: .idle)
+            button.addAction { [weak self, button] in
+                guard let self = self else { return }
+                self.didPressButton?(button, index)
+            }
+
+            buttons.append(button)
         }
 
         for position in activeNotePositions {
@@ -35,8 +47,13 @@ class TrackViewModel {
 
         self.buttons = buttons
     }
+
+    private func setUpButtons() {
+
+        updateButtons()
+    }
     
-    func showHighlight(position: Int) {
+    func highlightButton(position: Int) {
         DispatchQueue.main.async {
             let button = self.buttons[position]
             button.showHighlight()

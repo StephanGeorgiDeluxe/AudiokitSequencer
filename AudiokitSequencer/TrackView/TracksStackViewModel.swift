@@ -6,7 +6,7 @@
 //  Copyright © 2020 Georgi, Stephan. All rights reserved.
 //
 
-import Foundation
+import AudioKit
 
 class TracksStackViewModel {
     private let sequencer: Sequencer
@@ -61,5 +61,24 @@ class TracksStackViewModel {
                                             positions: positions,
                                             loopLength: sequencer.looplength)
         return trackViewModel
+    }
+
+    func receivedMidiCallBack(statusByte: MIDIByte,
+                              note: MIDIByte,
+                              velocity: MIDIByte) {
+
+        guard let status = AKMIDIStatus(byte: statusByte),
+            let drum = Drums(rawValue: note),
+            status.type == .noteOn,
+            drum == .setUp else { return }
+
+        highlightSequencePosition(note: note, velocity: velocity)
+    }
+
+    private func highlightSequencePosition(note: MIDIByte, velocity: MIDIByte) {
+        let index = Int(velocity - 1)
+        for trackViewModel in trackViewModels {
+            trackViewModel.highlightButton(position: index)
+        }
     }
 }

@@ -28,41 +28,33 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         AudioKit.output = drumSet.mixer
-        setUpSequencer()
         try? AudioKit.start()
-    }
-
-    func setUpSequencer() {
-        sequencer.callBack = { (statusByte, note, velocity) in
-            self.drumSet.receivedMidiCallBack(statusByte: statusByte, note: note, velocity: velocity)
-            self.tracksStackView.receivedMidiCallBack(statusByte: statusByte, note: note, velocity: velocity)
-        }
-
-        sequencer.enableLooping()
-
-
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fillTracks()
+
+        let tracksViewModel = TracksStackViewModel(sequencer: sequencer,
+                                                   drumTypes: [.bdrum,
+                                                               .sdrum,
+                                                               .clap,
+                                                               .hhClosed,
+                                                               .hhOpen,
+                                                               .tomHi,
+                                                               .tomMid,
+                                                               .tomLow])
+        tracksStackView.tracksStackViewModel = tracksViewModel
+
+        sequencer.callBack = { (statusByte, note, velocity) in
+            self.drumSet.receivedMidiCallBack(statusByte: statusByte, note: note, velocity: velocity)
+            tracksViewModel.receivedMidiCallBack(statusByte: statusByte, note: note, velocity: velocity)
+        }
+
+        sequencer.enableLooping()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-    }
-
-    func fillTracks() {
-        tracksStackView.fillTracks(sequencer: sequencer,
-                                   tracks: [.bdrum,
-                                            .sdrum,
-                                            .clap,
-                                            .hhClosed,
-                                            .hhOpen,
-                                            .tomHi,
-                                            .tomMid,
-                                            .tomLow ])
 
     }
 

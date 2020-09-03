@@ -10,6 +10,12 @@ import UIKit
 import AudioKit
 
 class TracksStackView: UIStackView {
+    var tracksStackViewModel: TracksStackViewModel? {
+        didSet {
+            updateTracks()
+        }
+    }
+
     var tracks: [TrackView] = []
 
     override init(frame: CGRect) {
@@ -28,31 +34,15 @@ class TracksStackView: UIStackView {
         spacing = 8
     }
 
-    func fillTracks(sequencer: Sequencer, tracks: [Drums]) {
-        for drum in tracks {
-            let track = PadButtonFactory.trackView(drum: drum, sequencer: sequencer)
-            self.tracks.append(track)
-            addArrangedSubview(track.stackView)
-            track.updateButtons()
+    func updateTracks() {
+        guard let stackViewModel = tracksStackViewModel else {
+            print("error: tracksStackViewModel is nil")
+            return
         }
-    }
-
-    func receivedMidiCallBack(statusByte: MIDIByte,
-                              note: MIDIByte,
-                              velocity: MIDIByte) {
-
-        guard let status = AKMIDIStatus(byte: statusByte),
-            let drum = Drums(rawValue: note),
-            status.type == .noteOn,
-            drum == .setUp else { return }
-
-        showHighlight(note: note, velocity: velocity)
-    }
-
-    func showHighlight(note: MIDIByte, velocity: MIDIByte) {
-        let index = Int(velocity - 1)
-        for track in tracks {
-            track.viewModel.showHighlight(position: index)
+        tracks = PadButtonFactory.trackViews(tracksViewModel: stackViewModel)
+        for trackView in tracks {
+            addArrangedSubview(trackView.stackView)
+            trackView.updateButtons()
         }
     }
 }
