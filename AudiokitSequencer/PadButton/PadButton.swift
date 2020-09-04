@@ -38,6 +38,10 @@ class PadButton: UIControl {
         renderer.state = .idle
         layer.addSublayer(renderer.gradientLayer)
         layer.addSublayer(renderer.strokeLayer)
+        if let levelLayer = renderer.levelLayer.shapeLayer {
+            layer.addSublayer(levelLayer)
+        }
+
         layer.addSublayer(renderer.highlightLayer)
     }
 

@@ -28,6 +28,8 @@ class PadRenderer {
     let strokeLayer = CAShapeLayer()
     let gradientLayer = CAGradientLayer()
     let highlightLayer = CAGradientLayer()
+    let levelLayer = CircularLevelShapeView()
+
     private let maskLayer = CAShapeLayer()
 
     var state: PadState = .idle {
@@ -112,8 +114,10 @@ class PadRenderer {
         switch state {
         case .idle:
             color = .padBlueLight
+            levelLayer.setStrokeEnd(to: 0, animated: false)
         case .active:
             color = .padSand
+            levelLayer.setStrokeEnd(to: 1.0, animated: true)
         }
     }
 
