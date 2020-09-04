@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     let env = AKAmplitudeEnvelope()
     let note = MIDINoteNumber(40)
 
-    let drums = Sampler()
     let sequencer = Sequencer()
 
     let drumSet = DrumSet()

@@ -32,7 +32,7 @@ class TrackViewModel {
     private func updateButtons() {
         var buttons: [PadButton] = []
         for index in 0 ..< length {
-            let button = PadButtonFactory.button(state: .idle)
+            let button = SequencerFactory.button(state: .idle)
             button.addAction { [weak self, button] in
                 guard let self = self else { return }
                 self.didPressButton?(button, index)

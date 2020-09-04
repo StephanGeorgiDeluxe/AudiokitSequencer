@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PadButtonFactory {
+class SequencerFactory {
 
     static let dimension: CGFloat = 32
     static let spacing: CGFloat = 8
@@ -25,7 +25,7 @@ class PadButtonFactory {
     static func trackViews(tracksViewModel: TracksStackViewModel) -> [TrackView]{
         var trackViews: [TrackView] = []
         for trackViewModel in tracksViewModel.trackViewModels {
-            let track = PadButtonFactory.trackView(viewModel: trackViewModel)
+            let track = SequencerFactory.trackView(viewModel: trackViewModel)
             trackViews.append(track)
         }
         return trackViews

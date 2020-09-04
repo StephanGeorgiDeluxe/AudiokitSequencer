@@ -39,7 +39,7 @@ class TracksStackView: UIStackView {
             print("error: tracksStackViewModel is nil")
             return
         }
-        tracks = PadButtonFactory.trackViews(tracksViewModel: stackViewModel)
+        tracks = SequencerFactory.trackViews(tracksViewModel: stackViewModel)
         for trackView in tracks {
             addArrangedSubview(trackView.stackView)
             trackView.updateButtons()

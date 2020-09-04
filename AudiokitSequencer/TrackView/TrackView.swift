@@ -26,7 +26,7 @@ class TrackView {
     init(trackViewModel: TrackViewModel) {
         viewModel = trackViewModel
         stackView.axis = .horizontal
-        stackView.spacing = PadButtonFactory.spacing
+        stackView.spacing = SequencerFactory.spacing
     }
 
     func updateButtons() {
