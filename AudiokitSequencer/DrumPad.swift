@@ -9,21 +9,33 @@
 import AudioKit
 
 class DrumPad {
-    let player: AKNode
+    let output: AKMixer
+    let drum: Drums
 
-    init(audioFile: AKAudioFile) {
-        player = try! AKAudioPlayer(file: audioFile)
+    private var player: AKAppleSampler?
+
+    init(audioFile: AKAudioFile, drumType: Drums) {
+        guard let player = audioFile.sampler else {
+            print("Error can't init sampler")
+            output = AKMixer()
+            drum = drumType
+            return
+        }
+
+        self.player = player
+        output = AKMixer([player])
+        drum = drumType
     }
 
     func play(_ velocity: MIDIVelocity = 127) {
-        guard let player = player as? AKAudioPlayer else { return }
-        let volume = Double(min(Double(velocity), Double(127)) / Double(127))
-        player.volume = volume
-        player.play()
+        guard let player = player else {
+            print ("Error: can't play sampler")
+            return
+        }
+        try? player.play(noteNumber: drum.note().noteNumber, velocity: velocity)
     }
 
     func stop() {
-        guard let player = player as? AKAudioPlayer else { return }
-        player.stop()
+        try? player?.stop()
     }
 }

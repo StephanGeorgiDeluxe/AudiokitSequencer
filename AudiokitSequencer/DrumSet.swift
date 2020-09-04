@@ -11,50 +11,50 @@ class DrumSet: AKMIDIInstrument {
     
     let bdrum: DrumPad = {
         let file = try! AKAudioFile(readFileName: "Drums/bd01_C1.wav")
-        return DrumPad(audioFile: file)
+        return DrumPad(audioFile: file, drumType: .bdrum)
     }()
     let sdrum: DrumPad = {
         let file = try! AKAudioFile(readFileName: "Drums/sd01_D1.wav")
-        return DrumPad(audioFile: file)
+        return DrumPad(audioFile: file, drumType: .sdrum)
     }()
 
     let hhClosed: DrumPad = {
         let file = try! AKAudioFile(readFileName: "Drums/hh01_C#1.wav")
-        return DrumPad(audioFile: file)
+        return DrumPad(audioFile: file, drumType: .hhClosed)
     }()
 
     let hhOpen: DrumPad = {
         let file = try! AKAudioFile(readFileName: "Drums/oh01_D#1.wav")
-        return DrumPad(audioFile: file)
+        return DrumPad(audioFile: file, drumType: .hhOpen)
     }()
 
     let clap: DrumPad = {
         let file = try! AKAudioFile(readFileName: "Drums/cp01_E1.wav")
-        return DrumPad(audioFile: file)
+        return DrumPad(audioFile: file, drumType: .clap)
     }()
 
     let tomLow: DrumPad = {
         let file = try! AKAudioFile(readFileName: "Drums/lt01_F1.wav")
-        return DrumPad(audioFile: file)
+        return DrumPad(audioFile: file, drumType: .tomLow)
     }()
     let tomMid: DrumPad = {
         let file = try! AKAudioFile(readFileName: "Drums/mt01_G1.wav")
-        return DrumPad(audioFile: file)
+        return DrumPad(audioFile: file, drumType: .tomMid)
     }()
     let tomHi: DrumPad = {
         let file = try! AKAudioFile(readFileName: "Drums/ht01_A1.wav")
-        return DrumPad(audioFile: file)
+        return DrumPad(audioFile: file, drumType: .tomHi)
     }()
 
     lazy var mixer: AKMixer = {
-        return AKMixer([bdrum.player,
-                        sdrum.player,
-                        clap.player,
-                        hhClosed.player,
-                        hhOpen.player,
-                        tomLow.player,
-                        tomMid.player,
-                        tomHi.player])
+        return AKMixer([bdrum.output,
+                        sdrum.output,
+                        clap.output,
+                        hhClosed.output,
+                        hhOpen.output,
+                        tomLow.output,
+                        tomMid.output,
+                        tomHi.output])
     }()
 
     func receivedMidiCallBack(statusByte: MIDIByte, note: MIDIByte, velocity: MIDIByte) {
