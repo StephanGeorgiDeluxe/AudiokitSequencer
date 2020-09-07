@@ -26,9 +26,9 @@ extension CAGradientLayer {
         colorAnimation.fromValue = fromColors
         colorAnimation.toValue = newColors
         colorAnimation.duration = duration
-        colorAnimation.isRemovedOnCompletion = false
+        colorAnimation.isRemovedOnCompletion = true
         colorAnimation.fillMode = CAMediaTimingFillMode.forwards
-        colorAnimation.timingFunction = CAMediaTimingFunction(name: name ?? .linear)
+        colorAnimation.timingFunction = CAMediaTimingFunction(name: name ?? .easeOut)
         colorAnimation.autoreverses = autoreverse
         add(colorAnimation, forKey: "colorsChangeAnimation")
     }

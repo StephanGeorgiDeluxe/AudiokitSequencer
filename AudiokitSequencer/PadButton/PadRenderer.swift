@@ -114,18 +114,28 @@ class PadRenderer {
         switch state {
         case .idle:
             color = .padBlueLight
-            levelLayer.setStrokeEnd(to: 0, animated: false)
         case .active:
             color = .padSand
-            levelLayer.setStrokeEnd(to: 1.0, animated: true)
         }
     }
 
+    func setLevel(_ level: CGFloat) {
+        levelLayer.level = level
+    }
+
+    func level() -> CGFloat {
+        return levelLayer.level
+    }
+
     func showTouch() {
-        gradientLayer.setColors([color.cgColor, color.darker(by: 15).cgColor], fromColors: [color.cgColor, color.lighter().cgColor], withDuration: PadRenderer.animationDuration)
+        gradientLayer.setColors([color.cgColor, color.darker(by: 15).cgColor],
+                                fromColors: [color.cgColor, color.lighter().cgColor],
+                                withDuration: PadRenderer.animationDuration)
     }
 
     func showHighlight() {
-        highlightLayer.setColors([UIColor.clear.cgColor, UIColor.clear.cgColor], fromColors: [UIColor.white.cgColor, UIColor.white.darker(by: 15).cgColor], withDuration: PadRenderer.animationDuration)
+        highlightLayer.setColors([UIColor.clear.cgColor, UIColor.clear.cgColor],
+                                 fromColors: [UIColor.white.cgColor, UIColor.white.darker(by: 15).cgColor],
+                                 withDuration: PadRenderer.animationDuration)
     }
 }

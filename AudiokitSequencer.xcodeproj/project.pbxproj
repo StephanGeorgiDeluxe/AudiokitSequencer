@@ -11,7 +11,6 @@
 		BD5FC3C74054CE1C15E61CF0 /* Pods_AudiokitSequencerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */; };
 		E80DDB9B2500DB86001ADBF9 /* TracksStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9A2500DB86001ADBF9 /* TracksStackViewModel.swift */; };
 		E80DDB9D2500EB64001ADBF9 /* UIControl+AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9C2500EB64001ADBF9 /* UIControl+AudioSequencer.swift */; };
-		E80DDB9F25024CB6001ADBF9 /* CircularLevelShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeView.swift */; };
 		E8669C8A24EA8CD10021645F /* Drums in Resources */ = {isa = PBXBuildFile; fileRef = E8669C8924EA8CD10021645F /* Drums */; };
 		E8669C8E24EBDC6D0021645F /* DrumPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C8D24EBDC6D0021645F /* DrumPad.swift */; };
 		E8669C9024EBE37E0021645F /* Sequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8669C8F24EBE37E0021645F /* Sequencer.swift */; };
@@ -32,6 +31,8 @@
 		E8678D4824C9DC9F006F8244 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8678D4624C9DC9F006F8244 /* LaunchScreen.storyboard */; };
 		E8678D5324C9DC9F006F8244 /* AudiokitSequencerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D5224C9DC9F006F8244 /* AudiokitSequencerTests.swift */; };
 		E8D0423D24FEA9900008F888 /* TracksStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0423C24FEA9900008F888 /* TracksStackView.swift */; };
+		E8ED32932506334C002534E7 /* PadGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ED32922506334C002534E7 /* PadGestures.swift */; };
+		E8ED329625068455002534E7 /* CircularLevelShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		E8678D5224C9DC9F006F8244 /* AudiokitSequencerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiokitSequencerTests.swift; sourceTree = "<group>"; };
 		E8678D5424C9DC9F006F8244 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8D0423C24FEA9900008F888 /* TracksStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksStackView.swift; sourceTree = "<group>"; };
+		E8ED32922506334C002534E7 /* PadGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadGestures.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,7 +125,9 @@
 		E8669C9324F7DE000021645F /* PadButton */ = {
 			isa = PBXGroup;
 			children = (
+				E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeView.swift */,
 				E8669C9424F7DE4B0021645F /* PadButton.swift */,
+				E8ED32922506334C002534E7 /* PadGestures.swift */,
 				E8669C9624F917230021645F /* PadRenderer.swift */,
 			);
 			path = PadButton;
@@ -189,7 +193,6 @@
 				E8669CA224FEA4C60021645F /* Extensions */,
 				E8669C9324F7DE000021645F /* PadButton */,
 				E8669CA624FEA7650021645F /* TrackView */,
-				E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeView.swift */,
 			);
 			path = AudiokitSequencer;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				E8669C9D24FD14640021645F /* UIGradientLayer+AudioSequencer.swift in Sources */,
 				E8669C9224ED24000021645F /* DrumSet.swift in Sources */,
 				E8669C9F24FE52930021645F /* TrackView.swift in Sources */,
+				E8ED329625068455002534E7 /* CircularLevelShapeView.swift in Sources */,
 				E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */,
 				E80DDB9B2500DB86001ADBF9 /* TracksStackViewModel.swift in Sources */,
 				E80DDB9D2500EB64001ADBF9 /* UIControl+AudioSequencer.swift in Sources */,
@@ -364,8 +368,8 @@
 				E8669CA524FEA6B70021645F /* TrackViewModel.swift in Sources */,
 				E8678D3C24C9DC9E006F8244 /* AppDelegate.swift in Sources */,
 				E8669C8E24EBDC6D0021645F /* DrumPad.swift in Sources */,
+				E8ED32932506334C002534E7 /* PadGestures.swift in Sources */,
 				E8D0423D24FEA9900008F888 /* TracksStackView.swift in Sources */,
-				E80DDB9F25024CB6001ADBF9 /* CircularLevelShapeView.swift in Sources */,
 				E8678D3E24C9DC9E006F8244 /* SceneDelegate.swift in Sources */,
 				E8669C9724F917230021645F /* PadRenderer.swift in Sources */,
 				E8669CA324FEA6810021645F /* UIColor+AudioSequencer.swift in Sources */,

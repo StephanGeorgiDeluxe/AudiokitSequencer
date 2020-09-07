@@ -10,6 +10,15 @@ import UIKit
 
 class PadButton: UIControl {
     private let renderer = PadRenderer(padState: .active)
+    private let gestures = PadGestures()
+
+    private let gestureRecognizer = UIPanGestureRecognizer()
+
+    var colorIntensity: CGFloat = 0 {
+        didSet {
+            renderer.setLevel(colorIntensity)
+        }
+    }
 
     var lineWidth: CGFloat {
         get { return renderer.lineWidth }
@@ -34,17 +43,42 @@ class PadButton: UIControl {
 
     private func setUpElements() {
         backgroundColor = .clear
-        renderer.updateBounds(CGRect(width: SequencerFactory.dimension, height: SequencerFactory.dimension))
+
+        setUpRenderer()
+        addLayer()
+        setUpGestures()
+    }
+
+    private func setUpRenderer() {
+        renderer.updateBounds(CGRect(width: SequencerFactory.dimension,
+                                     height: SequencerFactory.dimension))
         renderer.state = .idle
+    }
+
+    private func addLayer() {
         layer.addSublayer(renderer.gradientLayer)
         layer.addSublayer(renderer.strokeLayer)
-        if let levelLayer = renderer.levelLayer.shapeLayer {
-            layer.addSublayer(levelLayer)
-        }
-
+        layer.addSublayer(renderer.levelLayer.shapeLayer)
         layer.addSublayer(renderer.highlightLayer)
     }
 
+    private func setUpGestures() {
+        gestures.setUpGestures(view: self)
+        gestures.panAction = { [weak self] (change) in
+            guard let self = self else { return }
+            let minOffset: CGFloat = 0.02
+            let currentLevel = self.renderer.levelLayer.level
+            let distance = sqrt(pow(change.x, 2.0) + pow(change.y, 2.0))
+            let offset = max(distance/100, minOffset)
+            let level = change.y > 0 ? currentLevel - offset : currentLevel + offset
+            let changeLevel = max(0, min(1, level))
+
+            self.renderer.setLevel(changeLevel)
+        }
+    }
+}
+
+extension PadButton {
     func didTouchButton() {
         renderer.showTouch()
     }
