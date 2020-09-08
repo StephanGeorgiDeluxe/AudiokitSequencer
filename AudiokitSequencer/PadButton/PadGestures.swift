@@ -25,19 +25,14 @@ class PadGestures {
         guard gestureRecognizer.view != nil else { return }
         switch gestureRecognizer.state {
 
-        case .possible:
-            print("pan: possible")
-        case .began:
-            print("pan: began")
+        case .possible: break
+        case .began: break
         case .changed:
             panAction?(gestureRecognizer.translation(in: view))
             gestureRecognizer.setTranslation(.zero, in: view)
-        case .ended:
-            print("pan: ended")
-        case .cancelled:
-            print("pan: cancelled")
-        case .failed:
-            print("pan: failed")
+        case .ended: break
+        case .cancelled: break
+        case .failed: break
         @unknown default:
             break
         }
