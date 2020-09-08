@@ -25,6 +25,11 @@ class PadRenderer {
         }
     }
 
+    var level: CGFloat {
+        get { return levelLayer.level }
+        set { levelLayer.level = newValue }
+    }
+
     let strokeLayer = CAShapeLayer()
     let gradientLayer = CAGradientLayer()
     let highlightLayer = CAGradientLayer()
@@ -117,14 +122,6 @@ class PadRenderer {
         case .active:
             color = .padSand
         }
-    }
-
-    func setLevel(_ level: CGFloat) {
-        levelLayer.level = level
-    }
-
-    func level() -> CGFloat {
-        return levelLayer.level
     }
 
     func showTouch() {

@@ -11,13 +11,13 @@ import UIKit
 class PadButton: UIControl {
     private let renderer = PadRenderer(padState: .active)
     private let gestures = PadGestures()
-
     private let gestureRecognizer = UIPanGestureRecognizer()
 
-    var colorIntensity: CGFloat = 0 {
-        didSet {
-            renderer.setLevel(colorIntensity)
-        }
+    var levelChangeAction: ((PadButton, CGFloat) -> Void)?
+
+    var level: CGFloat {
+        set { renderer.level = newValue }
+        get { return renderer.level }
     }
 
     var lineWidth: CGFloat {
@@ -27,7 +27,9 @@ class PadButton: UIControl {
 
     var padState: PadState = .idle {
         didSet {
-            renderer.state = padState
+            if renderer.state != padState {
+                renderer.state = padState
+            }
         }
     }
 
@@ -66,8 +68,10 @@ class PadButton: UIControl {
         gestures.setUpGestures(view: self)
         gestures.panAction = { [weak self] (change) in
             guard let self = self else { return }
-            let changeLevel = PadButton.add(touchChange: change, to: self.renderer.levelLayer.level)
-            self.renderer.setLevel(changeLevel)
+            let changeLevel = PadButton.add(touchChange: change,
+                                            to: self.renderer.levelLayer.level)
+            self.renderer.level = changeLevel
+            self.levelChangeAction?(self, self.renderer.level)
         }
     }
 }
