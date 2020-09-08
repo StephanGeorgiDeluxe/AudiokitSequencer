@@ -18,20 +18,45 @@ class TracksStackViewModel {
         self.drumTypes = drumTypes
 
         setUpTracks(sequencer: sequencer, drums: drumTypes)
-        self.sequencer.midiDataDidChange = { [weak self] (drumType, index, active) in
-            self?.updateTrack(drumType: drumType, index: index, isActive: active)
+
+        self.sequencer.didToggleNote = { [weak self] (drumType, index, active) in
+            self?.updateButtonState(drumType: drumType, index: index, isActive: active)
+        }
+
+        self.sequencer.didChangeVelocity = { [weak self] (drumType, index, level) in
+            self?.updateButtonLevel(drumType: drumType, index: index, level: level)
         }
     }
 
-    private func updateTrack(drumType: Drums, index: Int, isActive: Bool) {
+    private func updateButtonState(drumType: Drums, index: Int, isActive: Bool) {
         guard let trackViewModel = trackViewModels.first(where: { $0.drumType == drumType } ) else { return }
         let button = trackViewModel.buttons[index]
         let buttonState = button.padState
-        switch buttonState {
-        case .idle:
+        switch(buttonState, isActive) {
+        case (.idle, true):
             button.padState = .active
-        case .active:
+            button.level = 1
+        case (.active, false):
             button.padState = .idle
+            button.level = 0
+        case (_, _):
+            break
+        }
+    }
+
+    private func updateButtonLevel(drumType: Drums, index: Int, level: NoteVelocity) {
+        guard let trackViewModel = trackViewModels.first(where: { $0.drumType == drumType } ) else { return }
+        let button = trackViewModel.buttons[index]
+        let buttonState = button.padState
+        let isActive = level != .zero
+
+        switch(buttonState, isActive) {
+        case (.idle, true):
+            button.padState = .active
+        case (.active, false):
+            button.padState = .idle
+        case (_, _):
+            break
         }
     }
 
@@ -44,18 +69,24 @@ class TracksStackViewModel {
         for drum in drumTypes {
             let trackViewModel = createTrackViewModel(drum: drum, sequencer: sequencer)
             trackViewModels.append(trackViewModel)
-            trackViewModel.didPressButton = { [weak self] (button, index) in
+            trackViewModel.didPressButton = { [weak self] (index) in
                 guard let self = self else { return }
-                self.updateSequencer(drumType: trackViewModel.drumType, index: index)
+                self.sequencer.toggleNote(index: index,
+                                          drumType: trackViewModel.drumType)
+            }
+
+            trackViewModel.buttonLevelChanged = { [weak self] (index, level) in
+                guard let self = self else { return }
+                let velocity = MIDIVelocity(abs(level * 127))
+                let noteVelocity = NoteVelocity.velocityStage(from: velocity)
+                self.sequencer.changeNote(index: index,
+                                          drumType: trackViewModel.drumType,
+                                          veloctiy: noteVelocity)
             }
         }
     }
 
-    func updateSequencer(drumType: Drums, index: Int) {
-        sequencer.toggleNote(index: index, drumType: drumType)
-    }
-
-    func createTrackViewModel(drum: Drums, sequencer: Sequencer) -> TrackViewModel {
+    private func createTrackViewModel(drum: Drums, sequencer: Sequencer) -> TrackViewModel {
         let positions = sequencer.activeNotePositions(drum)
         let trackViewModel = TrackViewModel(drumsType: drum,
                                             positions: positions,

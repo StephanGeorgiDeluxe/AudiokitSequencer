@@ -28,6 +28,22 @@ enum NoteVelocity: MIDIVelocity {
     case low = 32
     case lower = 16
     case zero = 0
+
+    static func velocityStage(from velocity: MIDIVelocity) -> NoteVelocity{
+        switch velocity {
+        case 0: return .zero
+        case 1..<16: return .lower
+        case 16..<32: return .low
+        case 32..<48: return .lowHigh
+        case 48..<64: return .mid
+        case 64..<80: return .midHigh
+        case 80..<96: return .high
+        case 96..<112: return .higher
+        case 112..<127: return .full
+        default:
+            return .full
+        }
+    }
 }
 
 enum Drums: UInt8, CaseIterable {
@@ -86,12 +102,13 @@ enum ShiftDirection {
 class Sequencer {
     var preShiftBeats: Double = 1.0
     var looplength: Int = 16
-    private var grooveDelay: Double = 0.04
+    private var grooveDelay: Double = 0.02
     private let sequencer = AKAppleSequencer()
     private var tracks: Array<AKMusicTrack> = []
     private let callbackInstrument = AKMIDICallbackInstrument()
 
-    var midiDataDidChange: ((Drums, Int, Bool) -> Void)?
+    var didToggleNote: ((Drums, Int, Bool) -> Void)?
+    var didChangeVelocity: ((Drums, Int, NoteVelocity) -> Void)?
 
     var callBack: AKMIDICallback?
 
@@ -128,6 +145,7 @@ class Sequencer {
         add(drumNote: .bdrum, position: 1)
         add(drumNote: .bdrum, position: 2)
         add(drumNote: .bdrum, position: 3)
+        add(drumNote: .bdrum, position: 3.75)
 
         add(drumNote: .sdrum, position: 1)
         add(drumNote: .sdrum, position: 3)
@@ -154,72 +172,6 @@ class Sequencer {
         add(drumNote: .clap, position: 2.25, velocity: .lower)
 
         sequencer.preroll()
-    }
-
-    func addSetUpNote(position: Double, velocity: MIDIVelocity) {
-        let position = processNotePosition(position,
-                                           preShiftBeats: preShiftBeats,
-                                           grooveDelay: grooveDelay)
-
-        add(note: Drums.setUp.note(velocity: velocity,
-                                   duration: NoteLength.quarter.duration(),
-                                   position: AKDuration(beats: position)))
-    }
-
-    func add(drumNote: Drums,
-             position: Double,
-             duration: NoteLength = .whole,
-             velocity: NoteVelocity = .full) {
-
-        let position = processNotePosition(position,
-                                           preShiftBeats: preShiftBeats,
-                                           grooveDelay: grooveDelay)
-
-        add(note: drumNote.note(velocity: velocity.rawValue,
-                                duration: duration.duration(),
-                                position: AKDuration(beats: position)))
-    }
-
-    private func add(note: AKMIDINoteData) {
-        guard let drum = Drums(rawValue: note.noteNumber) else { return }
-        let trackIndex = drum.trackNumber()
-        let track = sequencer.tracks[trackIndex]
-        track.add(midiNoteData: note)
-    }
-
-    func remove(drumNote: Drums,
-                position: Double) {
-
-        let position = processNotePosition(position,
-                                           preShiftBeats: preShiftBeats,
-                                           grooveDelay: grooveDelay)
-
-        remove(note: drumNote.note(velocity: .max,
-                                   duration: AKDuration(beats: 1),
-                                   position: AKDuration(beats: position)))
-    }
-
-    private func remove(note: AKMIDINoteData) {
-        guard let drum = Drums(rawValue: note.noteNumber) else { return }
-        let trackIndex = drum.trackNumber()
-        let track = sequencer.tracks[trackIndex]
-        let midiNotes = track.getMIDINoteData()
-        let nodes = midiNotes.filter({ !($0.position == AKDuration(beats: note.position.beats) &&  $0.noteNumber == note.noteNumber) })
-        track.replaceMIDINoteData(with: nodes)
-
-    }
-
-    func processNotePosition(_ position: Double, preShiftBeats: Double, grooveDelay: Double) -> Double {
-
-        var processedPosition = position + preShiftBeats
-        let remainder = position.truncatingRemainder(dividingBy: 1.0)
-
-        switch remainder {
-        case 0.25, 0.75: processedPosition =  processedPosition + grooveDelay
-        default: break
-        }
-
-        return processedPosition
     }
 
     func play() {
@@ -250,6 +202,35 @@ class Sequencer {
         return sequencer.loopEnabled
     }
 
+    func toggleNote(index: Int, drumType: Drums) {
+        let activePositionIndexes = activeNotePositions(drumType)
+        let isActive = activePositionIndexes.filter({ $0 == index }).count > 0
+        let position = Double(index * NoteLength.quarter.rawValue)
+        remove(drumNote: drumType, position: position)
+
+        if isActive == false {
+            add(drumNote: drumType, position: position, velocity: .full)
+        }
+
+        didToggleNote?(drumType, index, isActive == false)
+    }
+
+    func changeNote(index: Int, drumType: Drums, veloctiy: NoteVelocity) {
+        let activePositionIndexes = activeNotePositions(drumType)
+        let isActive = activePositionIndexes.filter({ $0 == index }).count > 0
+        let position = Double(index * NoteLength.quarter.rawValue)
+
+        switch isActive {
+        case true:
+            edit(drumNote: drumType, position: position, velocity: veloctiy)
+        case false:
+            remove(drumNote: drumType, position: position)
+            add(drumNote: drumType, position: position, velocity: veloctiy)
+        }
+
+        didChangeVelocity?(drumType, index, veloctiy)
+    }
+
     func activeNotePositions(_ drum: Drums) -> [Int] {
         let trackNumber = drum.trackNumber()
         let track = sequencer.tracks[trackNumber]
@@ -266,7 +247,88 @@ class Sequencer {
         return positions
     }
 
-    func processBackNotePosition(_ position: Double, preShiftBeats: Double, grooveDelay: Double) -> Double {
+}
+
+extension Sequencer {
+
+    private func addSetUpNote(position: Double, velocity: MIDIVelocity) {
+        add(note: Drums.setUp.note(velocity: velocity,
+                                   duration: NoteLength.quarter.duration(),
+                                   position: AKDuration(beats: position)))
+    }
+
+    private func add(drumNote: Drums,
+             position: Double,
+             duration: NoteLength = .quarter,
+             velocity: NoteVelocity = .full) {
+
+        add(note: drumNote.note(velocity: velocity.rawValue,
+                                duration: duration.duration(),
+                                position: AKDuration(beats: position)))
+    }
+
+    private func add(note: AKMIDINoteData) {
+        guard let drum = Drums(rawValue: note.noteNumber) else { return }
+        let note = processNote(note,
+                               preShiftBeats: preShiftBeats,
+                               grooveDelay: grooveDelay)
+        let trackIndex = drum.trackNumber()
+        let track = sequencer.tracks[trackIndex]
+        track.add(midiNoteData: note)
+    }
+
+    private func edit(drumNote: Drums,
+              position: Double,
+              duration: NoteLength = .quarter,
+              velocity: NoteVelocity = .full) {
+        remove(drumNote: drumNote,
+               position: position)
+        if (velocity != .zero) {
+            add(drumNote: drumNote,
+                position: position,
+                velocity: velocity)
+        }
+    }
+
+    private func remove(drumNote: Drums,
+                position: Double) {
+        remove(note: drumNote.note(velocity: 0,
+                                   duration: AKDuration(beats: 1),
+                                   position: AKDuration(beats: position)))
+    }
+
+    private func remove(note: AKMIDINoteData) {
+        guard let drum = Drums(rawValue: note.noteNumber) else { return }
+        let note = processNote(note,
+                               preShiftBeats: preShiftBeats,
+                               grooveDelay: grooveDelay)
+        let trackIndex = drum.trackNumber()
+        let track = sequencer.tracks[trackIndex]
+        let midiNotes = track.getMIDINoteData()
+        let nodes = midiNotes.filter({ !($0.position == AKDuration(beats: note.position.beats) &&  $0.noteNumber == note.noteNumber) })
+        track.replaceMIDINoteData(with: nodes)
+    }
+
+    private func processNote(_ note: AKMIDINoteData, preShiftBeats: Double, grooveDelay: Double) -> AKMIDINoteData {
+        let position = note.position.beats
+        var processedPosition = position + preShiftBeats
+        var processedDuration = note.duration.beats
+        let remainder = position.truncatingRemainder(dividingBy: 1.0)
+
+        switch remainder {
+        case 0.25, 0.75:
+            processedPosition = processedPosition + grooveDelay
+            processedDuration = processedDuration - (grooveDelay + 0.01)
+        default: break
+        }
+
+        var note = note
+        note.position = AKDuration(beats: processedPosition)
+        note.duration = AKDuration(beats: processedDuration)
+        return note
+    }
+
+    private func processBackNotePosition(_ position: Double, preShiftBeats: Double, grooveDelay: Double) -> Double {
         var processedPosition = position - preShiftBeats
         let remainder = position.truncatingRemainder(dividingBy: 1.0)
         switch remainder {
@@ -276,17 +338,5 @@ class Sequencer {
         }
 
         return processedPosition
-    }
-
-    func toggleNote(index: Int, drumType: Drums) {
-        let activePositionIndexes = activeNotePositions(drumType)
-        let isActive = activePositionIndexes.filter({ $0 == index }).count > 0
-        let position = Double(index * NoteLength.quarter.rawValue)
-
-        switch isActive {
-        case true: remove(drumNote: drumType, position: position)
-        case false: add(drumNote: drumType, position: position)
-        }
-        midiDataDidChange?(drumType, index, isActive == false)
     }
 }

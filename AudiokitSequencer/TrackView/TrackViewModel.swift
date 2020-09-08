@@ -6,11 +6,12 @@
 //  Copyright © 2020 Georgi, Stephan. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class TrackViewModel {
 
-    var didPressButton: ((PadButton, Int) -> Void)?
+    var didPressButton: ((Int) -> Void)?
+    var buttonLevelChanged: ((Int, CGFloat) -> Void)?
 
     let drumType: Drums
     var activeNotePositions: [Int]
@@ -33,10 +34,13 @@ class TrackViewModel {
         var buttons: [PadButton] = []
         for index in 0 ..< length {
             let button = SequencerFactory.button(state: .idle)
-            button.addAction { [weak self, button] in
+            button.addAction { [weak self] in
                 guard let self = self else { return }
-                self.didPressButton?(button, index)
+                self.didPressButton?(index)
             }
+            button.levelChangeAction = { [weak self] (button, level) in
+                guard let self = self else { return }
+                self.buttonLevelChanged?(index, level) }
 
             buttons.append(button)
         }
@@ -46,11 +50,6 @@ class TrackViewModel {
         }
 
         self.buttons = buttons
-    }
-
-    private func setUpButtons() {
-
-        updateButtons()
     }
     
     func highlightButton(position: Int) {
