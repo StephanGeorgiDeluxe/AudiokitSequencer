@@ -21,7 +21,6 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tracksStackView: TracksStackView!
     @IBOutlet weak var startButton: UIButton!
-
     @IBOutlet weak var loopButton: UIButton!
 
     override func viewDidLoad() {
@@ -75,13 +74,6 @@ class ViewController: UIViewController {
             loopButton.setTitle("loop on", for: .normal)
             sequencer.toggleLoop()
         }
-    }
-    @IBAction func didTouchRemoveButton(_ sender: Any) {
-        sequencer.remove(drumNote: .tomHi, position: 0.25)
-    }
-
-    @IBAction func didTouchAddButton(_ sender: Any) {
-        sequencer.add(drumNote: .tomHi, position: 0.25)
     }
 }
 
