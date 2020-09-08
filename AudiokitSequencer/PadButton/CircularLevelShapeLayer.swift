@@ -1,5 +1,5 @@
 //
-//  CircularLevelShapeView.swift
+//  CircularLevelShapeLayer.swift
 //  Exported from Kite Compositor for Mac 2.0.2
 //
 //  Created on 04.09.20, 12:51.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CircularLevelShapeView: CALayer
+class CircularLevelShapeLayer: CALayer
 {
     // MARK: - Properties
 
@@ -83,7 +83,7 @@ class CircularLevelShapeView: CALayer
     func setStrokeEnd(to: CGFloat, animated: Bool)
     {
         strokeEndAnimation!.beginTime = shapeLayer.convertTime(CACurrentMediaTime(), from: nil)
-        strokeEndAnimation!.duration = animated ? 1.3 : 0.0001
+        strokeEndAnimation!.duration = animated ? 0.3 : 0.0001
         strokeEndAnimation!.toValue = min(max(0, to), 1.0)
         shapeLayer.add(self.strokeEndAnimation!, forKey: "strokeEndAnimation")
     }

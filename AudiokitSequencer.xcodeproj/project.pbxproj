@@ -32,7 +32,7 @@
 		E8678D5324C9DC9F006F8244 /* AudiokitSequencerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D5224C9DC9F006F8244 /* AudiokitSequencerTests.swift */; };
 		E8D0423D24FEA9900008F888 /* TracksStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0423C24FEA9900008F888 /* TracksStackView.swift */; };
 		E8ED32932506334C002534E7 /* PadGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ED32922506334C002534E7 /* PadGestures.swift */; };
-		E8ED329625068455002534E7 /* CircularLevelShapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeView.swift */; };
+		E8ED329625068455002534E7 /* CircularLevelShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,7 +54,7 @@
 		A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudiokitSequencerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80DDB9A2500DB86001ADBF9 /* TracksStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksStackViewModel.swift; sourceTree = "<group>"; };
 		E80DDB9C2500EB64001ADBF9 /* UIControl+AudioSequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+AudioSequencer.swift"; sourceTree = "<group>"; };
-		E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularLevelShapeView.swift; sourceTree = "<group>"; };
+		E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularLevelShapeLayer.swift; sourceTree = "<group>"; };
 		E8669C8924EA8CD10021645F /* Drums */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Drums; path = Samples/Drums; sourceTree = "<group>"; };
 		E8669C8D24EBDC6D0021645F /* DrumPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPad.swift; sourceTree = "<group>"; };
 		E8669C8F24EBE37E0021645F /* Sequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequencer.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 		E8669C9324F7DE000021645F /* PadButton */ = {
 			isa = PBXGroup;
 			children = (
-				E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeView.swift */,
+				E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeLayer.swift */,
 				E8669C9424F7DE4B0021645F /* PadButton.swift */,
 				E8ED32922506334C002534E7 /* PadGestures.swift */,
 				E8669C9624F917230021645F /* PadRenderer.swift */,
@@ -360,7 +360,7 @@
 				E8669C9D24FD14640021645F /* UIGradientLayer+AudioSequencer.swift in Sources */,
 				E8669C9224ED24000021645F /* DrumSet.swift in Sources */,
 				E8669C9F24FE52930021645F /* TrackView.swift in Sources */,
-				E8ED329625068455002534E7 /* CircularLevelShapeView.swift in Sources */,
+				E8ED329625068455002534E7 /* CircularLevelShapeLayer.swift in Sources */,
 				E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */,
 				E80DDB9B2500DB86001ADBF9 /* TracksStackViewModel.swift in Sources */,
 				E80DDB9D2500EB64001ADBF9 /* UIControl+AudioSequencer.swift in Sources */,

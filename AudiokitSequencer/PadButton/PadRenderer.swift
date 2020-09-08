@@ -28,7 +28,7 @@ class PadRenderer {
     let strokeLayer = CAShapeLayer()
     let gradientLayer = CAGradientLayer()
     let highlightLayer = CAGradientLayer()
-    let levelLayer = CircularLevelShapeView()
+    let levelLayer = CircularLevelShapeLayer()
 
     private let maskLayer = CAShapeLayer()
 

@@ -66,13 +66,7 @@ class PadButton: UIControl {
         gestures.setUpGestures(view: self)
         gestures.panAction = { [weak self] (change) in
             guard let self = self else { return }
-            let minOffset: CGFloat = 0.02
-            let currentLevel = self.renderer.levelLayer.level
-            let distance = sqrt(pow(change.x, 2.0) + pow(change.y, 2.0))
-            let offset = max(distance/100, minOffset)
-            let level = change.y > 0 ? currentLevel - offset : currentLevel + offset
-            let changeLevel = max(0, min(1, level))
-
+            let changeLevel = PadButton.add(touchChange: change, to: self.renderer.levelLayer.level)
             self.renderer.setLevel(changeLevel)
         }
     }
@@ -85,5 +79,14 @@ extension PadButton {
 
     func showHighlight() {
         renderer.showHighlight()
+    }
+
+    static func add(touchChange: CGPoint, to currentLevel: CGFloat) -> CGFloat {
+        let minOffset: CGFloat = 0.02
+        let distance = sqrt(pow(touchChange.x, 2.0) + pow(touchChange.y, 2.0))
+        let offset = max(distance/100, minOffset)
+        let level = touchChange.y > 0 ? currentLevel - offset : currentLevel + offset
+        let changeLevel = max(0, min(1, level))
+        return changeLevel
     }
 }
