@@ -27,7 +27,10 @@ class PadRenderer {
 
     var level: CGFloat {
         get { return levelLayer.level }
-        set { levelLayer.level = newValue }
+        set {
+            levelLayer.level = newValue
+            updatePadColors(state: state)
+        }
     }
 
     let strokeLayer = CAShapeLayer()
@@ -90,6 +93,7 @@ class PadRenderer {
         updateGradientLayer()
         updateHighlightLayer()
         updateMaskLayer()
+        updatePadColors(state: state)
     }
 
     private func updateGradientLayer() {
@@ -120,7 +124,10 @@ class PadRenderer {
         case .idle:
             color = .padBlueLight
         case .active:
-            color = .padSand
+            let minDarkness: CGFloat = 35
+            let darker: CGFloat = minDarkness * (1-level)
+            let brightnessColor = UIColor.padSand
+            color = brightnessColor.darker(by: darker)
         }
     }
 
