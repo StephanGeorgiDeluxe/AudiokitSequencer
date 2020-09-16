@@ -11,7 +11,6 @@ import UIKit
 class PadButton: UIControl {
     private let renderer = PadRenderer(padState: .active)
     private let gestures = PadGestures()
-    private let gestureRecognizer = UIPanGestureRecognizer()
 
     var levelChangeAction: ((PadButton, CGFloat) -> Void)?
 
