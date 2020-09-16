@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioKit
 
 class TrackViewModel {
 
@@ -15,22 +16,19 @@ class TrackViewModel {
 
     let drumType: Drums
     var activeNotePositions: [Int]
-    var length: Int = 0 {
-        didSet {
-            updateButtons()
-        }
-    }
+    var length: Int = 0
     var buttons: [PadButton] = []
 
-    init(drumsType: Drums, positions: [Int], loopLength: Int) {
+    init(drumsType: Drums, activeNotes: [AKMIDINoteData], positions: [Int], loopLength: Int) {
         drumType = drumsType
         activeNotePositions = positions
         self.length = loopLength
 
-        updateButtons()
+        setUpButtons()
+        updateButtons(notes: activeNotes)
     }
 
-    private func updateButtons() {
+    private func setUpButtons() {
         var buttons: [PadButton] = []
         for index in 0 ..< length {
             let button = SequencerFactory.button(state: .idle)
@@ -45,11 +43,17 @@ class TrackViewModel {
             buttons.append(button)
         }
 
-        for position in activeNotePositions {
+        self.buttons = buttons
+    }
+
+    func updateButtons(notes: [AKMIDINoteData]) {
+        for (index, position) in activeNotePositions.enumerated() {
+            let midiVelocity: MIDIVelocity = notes[index].velocity
+            let velocity = CGFloat(NoteVelocity.velocityStage(from: midiVelocity).rawValue)
+            let level = CGFloat(velocity / 127)
+            buttons[position].level = level
             buttons[position].padState = .active
         }
-
-        self.buttons = buttons
     }
     
     func highlightButton(position: Int) {

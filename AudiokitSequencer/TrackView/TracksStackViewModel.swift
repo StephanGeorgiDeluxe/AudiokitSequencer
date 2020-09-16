@@ -87,8 +87,10 @@ class TracksStackViewModel {
     }
 
     private func createTrackViewModel(drum: Drums, sequencer: Sequencer) -> TrackViewModel {
-        let positions = sequencer.activeNotePositions(drum)
+        let activeNotes = sequencer.activeNotes(drum)
+        let positions = sequencer.activeIndexes(notes: activeNotes, quantisizeUnit: .quarter)
         let trackViewModel = TrackViewModel(drumsType: drum,
+                                            activeNotes: activeNotes,
                                             positions: positions,
                                             loopLength: sequencer.looplength)
         return trackViewModel

@@ -102,7 +102,7 @@ enum ShiftDirection {
 class Sequencer {
     var preShiftBeats: Double = 1.0
     var looplength: Int = 16
-    private var grooveDelay: Double = 0.02
+    var grooveDelay: Double = 0.02
     private let sequencer = AKAppleSequencer()
     private var tracks: Array<AKMusicTrack> = []
     private let callbackInstrument = AKMIDICallbackInstrument()
@@ -232,22 +232,32 @@ class Sequencer {
     }
 
     func activeNotePositions(_ drum: Drums) -> [Int] {
-        let trackNumber = drum.trackNumber()
-        let track = sequencer.tracks[trackNumber]
-        let midiData = track.getMIDINoteData()
+        let midiData = activeNotes(drum)
+        let positions = activeIndexes(notes: midiData, quantisizeUnit: .quarter)
 
-        let positions = midiData.map { (note) -> Int in
-            let quantizised = processBackNotePosition(note.position.beats,
-                                                      preShiftBeats: preShiftBeats,
-                                                      grooveDelay: grooveDelay)
-            let quarterNotePositions = Int(quantizised / NoteLength.quarter.rawValue)
-            return quarterNotePositions
+        return positions
+    }
+
+    func activeIndexes(notes: [AKMIDINoteData], quantisizeUnit: NoteLength) -> [Int] {
+        let positions = notes.map { (note) -> Int in
+            let quantizised = Sequencer.processBackNotePosition(note.position.beats,
+                                                                preShiftBeats: preShiftBeats,
+                                                                grooveDelay: grooveDelay)
+            let quantizisedNotePositions = Int(quantizised / quantisizeUnit.rawValue)
+            return quantizisedNotePositions
         }
 
         return positions
     }
 
+    func activeNotes(_ drum: Drums) -> [AKMIDINoteData] {
+        let trackNumber = drum.trackNumber()
+        let track = sequencer.tracks[trackNumber]
+        let midiData = track.getMIDINoteData()
+        return midiData
+    }
 }
+
 
 extension Sequencer {
 
@@ -328,7 +338,7 @@ extension Sequencer {
         return note
     }
 
-    private func processBackNotePosition(_ position: Double, preShiftBeats: Double, grooveDelay: Double) -> Double {
+    static private func processBackNotePosition(_ position: Double, preShiftBeats: Double, grooveDelay: Double) -> Double {
         var processedPosition = position - preShiftBeats
         let remainder = position.truncatingRemainder(dividingBy: 1.0)
         switch remainder {
