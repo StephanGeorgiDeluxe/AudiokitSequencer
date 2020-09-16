@@ -122,11 +122,11 @@ class PadRenderer {
     private func updatePadColors(state: PadState) {
         switch state {
         case .idle:
-            color = .padBlueLight
+            color = .padIdle
         case .active:
             let minDarkness: CGFloat = 35
             let darker: CGFloat = minDarkness * (1-level)
-            let brightnessColor = UIColor.padSand
+            let brightnessColor = UIColor.padActive
             color = brightnessColor.darker(by: darker)
         }
     }
@@ -139,7 +139,7 @@ class PadRenderer {
 
     func showHighlight() {
         highlightLayer.setColors([UIColor.clear.cgColor, UIColor.clear.cgColor],
-                                 fromColors: [UIColor.white.cgColor, UIColor.white.darker(by: 15).cgColor],
+                                 fromColors: [UIColor.padHighlight.cgColor, UIColor.padHighlight.darker(by: 15).cgColor],
                                  withDuration: PadRenderer.animationDuration)
     }
 }
