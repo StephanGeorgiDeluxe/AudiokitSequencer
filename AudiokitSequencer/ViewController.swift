@@ -10,14 +10,8 @@ import UIKit
 import AudioKit
 
 class ViewController: UIViewController {
-    let env = AKAmplitudeEnvelope()
-    let note = MIDINoteNumber(40)
-
     let sequencer = Sequencer()
-
     let drumSet = DrumSet()
-
-    var padButtons: [PadButton] = []
 
     @IBOutlet weak var tracksStackView: TracksStackView!
     @IBOutlet weak var startButton: UIButton!
