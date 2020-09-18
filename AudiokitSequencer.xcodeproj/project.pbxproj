@@ -3,12 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9AD589A890606865CBEBEAAB /* Pods_AudiokitSequencer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5861E67F48C0582450AD7276 /* Pods_AudiokitSequencer.framework */; };
-		BD5FC3C74054CE1C15E61CF0 /* Pods_AudiokitSequencerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */; };
+		409AF9855F4B4FD3A43E970E /* Pods_AudiokitSequencerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A45EEA4AB29A043D1243D18 /* Pods_AudiokitSequencerTests.framework */; };
 		E80DDB9B2500DB86001ADBF9 /* TracksStackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9A2500DB86001ADBF9 /* TracksStackViewModel.swift */; };
 		E80DDB9D2500EB64001ADBF9 /* UIControl+AudioSequencer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9C2500EB64001ADBF9 /* UIControl+AudioSequencer.swift */; };
 		E8669C8A24EA8CD10021645F /* Drums in Resources */ = {isa = PBXBuildFile; fileRef = E8669C8924EA8CD10021645F /* Drums */; };
@@ -33,6 +32,7 @@
 		E8D0423D24FEA9900008F888 /* TracksStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0423C24FEA9900008F888 /* TracksStackView.swift */; };
 		E8ED32932506334C002534E7 /* PadGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ED32922506334C002534E7 /* PadGestures.swift */; };
 		E8ED329625068455002534E7 /* CircularLevelShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeLayer.swift */; };
+		FFFBB176606783CEA22A7EBE /* Pods_AudiokitSequencer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 954AE69E2A0F5C41AA73B790 /* Pods_AudiokitSequencer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +49,9 @@
 		07D0B390C746B012D21BA856 /* Pods-AudiokitSequencerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudiokitSequencerTests.release.xcconfig"; path = "Target Support Files/Pods-AudiokitSequencerTests/Pods-AudiokitSequencerTests.release.xcconfig"; sourceTree = "<group>"; };
 		0F68F75FD80F257050713C93 /* Pods-AudiokitSequencer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudiokitSequencer.debug.xcconfig"; path = "Target Support Files/Pods-AudiokitSequencer/Pods-AudiokitSequencer.debug.xcconfig"; sourceTree = "<group>"; };
 		13954783F1C09B9BFBC97A85 /* Pods-AudiokitSequencerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudiokitSequencerTests.debug.xcconfig"; path = "Target Support Files/Pods-AudiokitSequencerTests/Pods-AudiokitSequencerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5861E67F48C0582450AD7276 /* Pods_AudiokitSequencer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudiokitSequencer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CA7515D0B91C10E14D1E3DF /* Pods-AudiokitSequencer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AudiokitSequencer.release.xcconfig"; path = "Target Support Files/Pods-AudiokitSequencer/Pods-AudiokitSequencer.release.xcconfig"; sourceTree = "<group>"; };
-		A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudiokitSequencerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		954AE69E2A0F5C41AA73B790 /* Pods_AudiokitSequencer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudiokitSequencer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A45EEA4AB29A043D1243D18 /* Pods_AudiokitSequencerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AudiokitSequencerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E80DDB9A2500DB86001ADBF9 /* TracksStackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksStackViewModel.swift; sourceTree = "<group>"; };
 		E80DDB9C2500EB64001ADBF9 /* UIControl+AudioSequencer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+AudioSequencer.swift"; sourceTree = "<group>"; };
 		E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularLevelShapeLayer.swift; sourceTree = "<group>"; };
@@ -87,7 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AD589A890606865CBEBEAAB /* Pods_AudiokitSequencer.framework in Frameworks */,
+				FFFBB176606783CEA22A7EBE /* Pods_AudiokitSequencer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BD5FC3C74054CE1C15E61CF0 /* Pods_AudiokitSequencerTests.framework in Frameworks */,
+				409AF9855F4B4FD3A43E970E /* Pods_AudiokitSequencerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,8 +116,8 @@
 		84A5A6AEC4FC7C1CA28F629D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5861E67F48C0582450AD7276 /* Pods_AudiokitSequencer.framework */,
-				A9ED31BC1507977BA4441E60 /* Pods_AudiokitSequencerTests.framework */,
+				954AE69E2A0F5C41AA73B790 /* Pods_AudiokitSequencer.framework */,
+				9A45EEA4AB29A043D1243D18 /* Pods_AudiokitSequencerTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -253,7 +253,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Georgi, Stephan";
 				TargetAttributes = {
 					E8678D3724C9DC9E006F8244 = {
@@ -443,6 +443,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -503,6 +504,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
