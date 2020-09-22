@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -12,14 +12,26 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AudiokitSequencer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="382" placeholderIntrinsicHeight="756" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S3r-Jd-dFX" customClass="TracksStackView" customModule="AudiokitSequencer" customModuleProvider="target">
-                                <rect key="frame" x="16" y="60" width="382" height="756"/>
-                            </stackView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G2E-Pv-zyg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="S3r-Jd-dFX" customClass="TracksStackView" customModule="AudiokitSequencer" customModuleProvider="target"/>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="S3r-Jd-dFX" firstAttribute="leading" secondItem="2gJ-pg-xsk" secondAttribute="leading" id="4mQ-qf-jzb"/>
+                                    <constraint firstItem="S3r-Jd-dFX" firstAttribute="bottom" secondItem="2gJ-pg-xsk" secondAttribute="bottom" id="CfK-Xg-voT"/>
+                                    <constraint firstItem="S3r-Jd-dFX" firstAttribute="top" secondItem="2gJ-pg-xsk" secondAttribute="top" id="egc-Hc-4PJ"/>
+                                    <constraint firstItem="S3r-Jd-dFX" firstAttribute="trailing" secondItem="2gJ-pg-xsk" secondAttribute="trailing" id="wvf-QT-B0c"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="2gJ-pg-xsk"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="pRv-sc-VUU"/>
+                            </scrollView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="n3q-8B-gni">
-                                <rect key="frame" x="158.5" y="832" width="97" height="30"/>
+                                <rect key="frame" x="139" y="617" width="97" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGK-Vy-PIU">
                                         <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -43,13 +55,14 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="S3r-Jd-dFX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1dj-Qr-qXU"/>
-                            <constraint firstItem="n3q-8B-gni" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5fP-Du-75J"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="n3q-8B-gni" secondAttribute="bottom" id="9WD-pb-v2u"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="S3r-Jd-dFX" secondAttribute="trailing" constant="16" id="Bcw-LO-f11"/>
-                            <constraint firstItem="S3r-Jd-dFX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="16" id="aVR-v2-JwE"/>
+                            <constraint firstAttribute="bottom" secondItem="G2E-Pv-zyg" secondAttribute="bottom" id="24f-hS-Ovp"/>
+                            <constraint firstItem="n3q-8B-gni" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9xO-XP-Aso"/>
+                            <constraint firstItem="G2E-Pv-zyg" firstAttribute="leading" secondItem="hg8-5Q-b9W" secondAttribute="leading" id="H5U-wg-xg8"/>
+                            <constraint firstItem="hg8-5Q-b9W" firstAttribute="trailing" secondItem="G2E-Pv-zyg" secondAttribute="trailing" id="XZK-EG-Vi1"/>
+                            <constraint firstItem="hg8-5Q-b9W" firstAttribute="bottom" secondItem="n3q-8B-gni" secondAttribute="bottom" constant="20" id="elZ-7a-VPO"/>
+                            <constraint firstItem="G2E-Pv-zyg" firstAttribute="top" secondItem="hg8-5Q-b9W" secondAttribute="top" id="vrO-yg-0pd"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="hg8-5Q-b9W"/>
                     </view>
                     <connections>
                         <outlet property="loopButton" destination="615-jX-la1" id="rwh-V8-uDS"/>
@@ -59,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
+            <point key="canvasLocation" x="130.40000000000001" y="93.103448275862078"/>
         </scene>
     </scenes>
 </document>
