@@ -10,7 +10,7 @@ import UIKit
 
 class SequencerFactory {
 
-    static let dimension: CGFloat = 32
+    static let dimension: CGFloat = 75
     static let spacing: CGFloat = 8
 
     static func button(state: PadState) -> PadButton {

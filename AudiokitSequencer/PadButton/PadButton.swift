@@ -9,7 +9,7 @@
 import UIKit
 
 class PadButton: UIControl {
-    private let renderer = PadRenderer(padState: .active)
+    private let renderer = PadRenderer(padState: .idle)
     private let gestures = PadGestures()
 
     var levelChangeAction: ((PadButton, CGFloat) -> Void)?
@@ -17,11 +17,6 @@ class PadButton: UIControl {
     var level: CGFloat {
         set { renderer.level = newValue }
         get { return renderer.level }
-    }
-
-    var lineWidth: CGFloat {
-        get { return renderer.lineWidth }
-        set { renderer.lineWidth = newValue }
     }
 
     var padState: PadState = .idle {
@@ -58,8 +53,7 @@ class PadButton: UIControl {
 
     private func addLayer() {
         layer.addSublayer(renderer.gradientLayer)
-        layer.addSublayer(renderer.strokeLayer)
-        layer.addSublayer(renderer.levelLayer.shapeLayer)
+        layer.addSublayer(renderer.levelLayer)
         layer.addSublayer(renderer.highlightLayer)
     }
 
