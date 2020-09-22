@@ -15,6 +15,8 @@ extension UIColor {
     static let padIdle = UIColor(red: 85/255, green: 187/255, blue: 170/255, alpha: 1)
     static let padActive = UIColor(red: 238/255, green: 221/255, blue: 153/255, alpha: 1)
     static let padHighlight = UIColor(red: 255/255, green: 243/255, blue: 175/255, alpha: 0.9)
+    static let iconStrokeColor = UIColor(white: 1, alpha: 0.8)
+
 
     func lighter(by percentage: CGFloat = 30.0) -> UIColor {
         return self.adjust(by: abs(percentage)) ?? self
