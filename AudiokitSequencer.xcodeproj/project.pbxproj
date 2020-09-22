@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,8 @@
 		E8678D4524C9DC9F006F8244 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8678D4424C9DC9F006F8244 /* Assets.xcassets */; };
 		E8678D4824C9DC9F006F8244 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8678D4624C9DC9F006F8244 /* LaunchScreen.storyboard */; };
 		E8678D5324C9DC9F006F8244 /* AudiokitSequencerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8678D5224C9DC9F006F8244 /* AudiokitSequencerTests.swift */; };
+		E8CC1BCB2518EF1B001DFE49 /* GradientLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CC1BCA2518EF1B001DFE49 /* GradientLayer.swift */; };
+		E8CC1BCF251A0BB8001DFE49 /* ButtonLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8CC1BCE251A0BB8001DFE49 /* ButtonLayer.swift */; };
 		E8D0423D24FEA9900008F888 /* TracksStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D0423C24FEA9900008F888 /* TracksStackView.swift */; };
 		E8ED32932506334C002534E7 /* PadGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8ED32922506334C002534E7 /* PadGestures.swift */; };
 		E8ED329625068455002534E7 /* CircularLevelShapeLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeLayer.swift */; };
@@ -78,6 +80,8 @@
 		E8678D4E24C9DC9F006F8244 /* AudiokitSequencerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AudiokitSequencerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8678D5224C9DC9F006F8244 /* AudiokitSequencerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudiokitSequencerTests.swift; sourceTree = "<group>"; };
 		E8678D5424C9DC9F006F8244 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E8CC1BCA2518EF1B001DFE49 /* GradientLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLayer.swift; sourceTree = "<group>"; };
+		E8CC1BCE251A0BB8001DFE49 /* ButtonLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonLayer.swift; sourceTree = "<group>"; };
 		E8D0423C24FEA9900008F888 /* TracksStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksStackView.swift; sourceTree = "<group>"; };
 		E8ED32922506334C002534E7 /* PadGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PadGestures.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,10 +129,10 @@
 		E8669C9324F7DE000021645F /* PadButton */ = {
 			isa = PBXGroup;
 			children = (
-				E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeLayer.swift */,
 				E8669C9424F7DE4B0021645F /* PadButton.swift */,
 				E8ED32922506334C002534E7 /* PadGestures.swift */,
 				E8669C9624F917230021645F /* PadRenderer.swift */,
+				E8CC1BC92518EF05001DFE49 /* ButtonLayers */,
 			);
 			path = PadButton;
 			sourceTree = "<group>";
@@ -204,6 +208,16 @@
 				E8678D5424C9DC9F006F8244 /* Info.plist */,
 			);
 			path = AudiokitSequencerTests;
+			sourceTree = "<group>";
+		};
+		E8CC1BC92518EF05001DFE49 /* ButtonLayers */ = {
+			isa = PBXGroup;
+			children = (
+				E8CC1BCE251A0BB8001DFE49 /* ButtonLayer.swift */,
+				E80DDB9E25024CB6001ADBF9 /* CircularLevelShapeLayer.swift */,
+				E8CC1BCA2518EF1B001DFE49 /* GradientLayer.swift */,
+			);
+			path = ButtonLayers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -358,10 +372,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8669C9D24FD14640021645F /* UIGradientLayer+AudioSequencer.swift in Sources */,
+				E8CC1BCB2518EF1B001DFE49 /* GradientLayer.swift in Sources */,
 				E8669C9224ED24000021645F /* DrumSet.swift in Sources */,
 				E8669C9F24FE52930021645F /* TrackView.swift in Sources */,
 				E8ED329625068455002534E7 /* CircularLevelShapeLayer.swift in Sources */,
 				E8678D4024C9DC9E006F8244 /* ViewController.swift in Sources */,
+				E8CC1BCF251A0BB8001DFE49 /* ButtonLayer.swift in Sources */,
 				E80DDB9B2500DB86001ADBF9 /* TracksStackViewModel.swift in Sources */,
 				E80DDB9D2500EB64001ADBF9 /* UIControl+AudioSequencer.swift in Sources */,
 				E8669C9524F7DE4B0021645F /* PadButton.swift in Sources */,
